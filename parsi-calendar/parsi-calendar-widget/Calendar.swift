@@ -26,23 +26,24 @@ enum WdDates {
 
 enum WdColors {
 	static var weekendColor:UIColor {
-	return UIColor(hue:210.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
+	return UIColor(hue:150.0/360.0, saturation:0.7, brightness:0.4, alpha:1.0)
+		//return UIColor(hue:210.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
 	}
 	
 	static var importantDay:UIColor {
-	return UIColor(hue:1.0, saturation:1.0, brightness:0.9, alpha:1.0)
+	return UIColor(hue:1.0, saturation:1.0, brightness:0.9, alpha:0.5)
 	}
 	
 	static var gathaDay:UIColor {
-	return UIColor(hue:150.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
+	return UIColor(hue:150.0/360.0, saturation:1.0, brightness:0.5, alpha:0.5)
 	}
 	
 	static var today:UIColor {
-	return UIColor(hue:37.0/360.0, saturation:0.15, brightness:0.90, alpha:0.5)
+	return UIColor(hue:90.0/360.0, saturation:0.9, brightness:0.6, alpha:0.1)
 	}
 	
 	static var todayBorder:UIColor {
-	return UIColor(hue:210.0/360.0, saturation:1.0, brightness:1.0, alpha:0.5)
+	return UIColor(hue:90.0/360.0, saturation:0.9, brightness:0.6, alpha:0.5)
 	}
 	
 }

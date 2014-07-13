@@ -14,14 +14,8 @@ class DayCollectionViewCell: UICollectionViewCell {
 	@IBOutlet var lbDayName:UILabel
 	@IBOutlet var lbWeekday:UILabel
 
-	@IBOutlet var lbExtra:UILabel
+	@IBOutlet var lbExtra1:UILabel
+	@IBOutlet var lbExtra2:UILabel
+	@IBOutlet var lbExtraMore:UILabel
 	
-    init(frame: CGRect) {
-        super.init(frame: frame)
-        // Initialization code
-    }
-	
-	init(coder aDecoder: NSCoder!) {
-		super.init(coder: aDecoder)
-	}
 }

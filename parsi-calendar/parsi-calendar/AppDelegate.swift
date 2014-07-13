@@ -17,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
 		// Override point for customization after application launch.
+		
+		if !Statics.userDefaults.boolForKey("initialized") {
+			BookmarkDay.insert(0, month: 0, title: "Navroz", isDefault: true)
+			BookmarkDay.insert(5, month: 0, title: "Khordad Saal", isDefault: true)
+			BookmarkDay.insert(30, month: 11, title: "First Gatha", isDefault: true)
+			BookmarkDay.insert(31, month: 11, title: "Second Gatha", isDefault: true)
+			BookmarkDay.insert(32, month: 11, title: "Third Gatha", isDefault: true)
+			BookmarkDay.insert(33, month: 11, title: "Fourth Gatha", isDefault: true)
+			BookmarkDay.insert(34, month: 11, title: "Papeti", isDefault: true)
+			Statics.userDefaults.setBool(true, forKey: "initialized")
+		}
+		
 		return true
 	}
 

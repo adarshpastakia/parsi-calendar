@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1013F7E1971EDDC00A70595 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F7D1971EDDC00A70595 /* SettingsTableViewController.swift */; };
+		F1013F821971EE9400A70595 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F811971EE9400A70595 /* SettingsViewController.swift */; };
+		F1013F841971FEDE00A70595 /* BookmarkDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F831971FEDE00A70595 /* BookmarkDay.swift */; };
+		F1013F8619720B0F00A70595 /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */; };
+		F113B730197168800020CD8A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F113B72F197168800020CD8A /* Helper.swift */; };
 		F15F86F219706A7E00461B06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15F86F119706A7E00461B06 /* NotificationCenter.framework */; };
 		F15F86F719706A7E00461B06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15F86F619706A7E00461B06 /* TodayViewController.swift */; };
 		F15F86F919706A7E00461B06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F15F86F819706A7E00461B06 /* MainInterface.storyboard */; };
@@ -67,6 +72,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F1013F7D1971EDDC00A70595 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F1013F811971EE9400A70595 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F1013F831971FEDE00A70595 /* BookmarkDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDay.swift; sourceTree = "<group>"; };
+		F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
+		F113B72F197168800020CD8A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		F15F86F019706A7E00461B06 /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "com.borisinc.parsi-calendar.parsi-calendar-widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15F86F119706A7E00461B06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F15F86F519706A7E00461B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +133,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1013F7B1971EDAF00A70595 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F18C435C1970584D00EC2C82 /* DayCollectionViewCell.swift */,
+				F1EED2CE19709A7D007A7D6C /* DayTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F1013F7C1971EDB800A70595 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F18C435B19704CF100EC2C82 /* calendar-test.playground */,
+				F18C435719704AB700EC2C82 /* DateHelper.swift */,
+				F18C4355197047FC00EC2C82 /* Calendar.swift */,
+				F113B72F197168800020CD8A /* Helper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		F15F86EB197069F700461B06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,15 +210,12 @@
 			children = (
 				F18C4353197042A800EC2C82 /* App Delegate */,
 				F18C43511970429800EC2C82 /* Core Data */,
+				F1013F7C1971EDB800A70595 /* Helpers */,
 				F18C433B1970424200EC2C82 /* Images.xcassets */,
 				F18C4352197042A100EC2C82 /* Storyboard */,
 				F18C432F1970424200EC2C82 /* Supporting Files */,
 				F18C4354197042B100EC2C82 /* View Controllers */,
-				F18C435719704AB700EC2C82 /* DateHelper.swift */,
-				F18C4355197047FC00EC2C82 /* Calendar.swift */,
-				F18C435B19704CF100EC2C82 /* calendar-test.playground */,
-				F18C435C1970584D00EC2C82 /* DayCollectionViewCell.swift */,
-				F1EED2CE19709A7D007A7D6C /* DayTableViewCell.swift */,
+				F1013F7B1971EDAF00A70595 /* Views */,
 			);
 			path = "parsi-calendar";
 			sourceTree = "<group>";
@@ -222,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				F18C43331970424200EC2C82 /* parsi_calendar.xcdatamodeld */,
+				F1013F831971FEDE00A70595 /* BookmarkDay.swift */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -246,6 +274,9 @@
 			isa = PBXGroup;
 			children = (
 				F18C435E1970589600EC2C82 /* CalendarViewController.swift */,
+				F1013F7D1971EDDC00A70595 /* SettingsTableViewController.swift */,
+				F1013F811971EE9400A70595 /* SettingsViewController.swift */,
+				F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -392,12 +423,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1EED2CF19709A7D007A7D6C /* DayTableViewCell.swift in Sources */,
+				F1013F821971EE9400A70595 /* SettingsViewController.swift in Sources */,
 				F18C435F1970589600EC2C82 /* CalendarViewController.swift in Sources */,
 				F18C435819704AB700EC2C82 /* DateHelper.swift in Sources */,
 				F18C43321970424200EC2C82 /* AppDelegate.swift in Sources */,
+				F1013F8619720B0F00A70595 /* BookmarksTableViewController.swift in Sources */,
 				F18C43351970424200EC2C82 /* parsi_calendar.xcdatamodeld in Sources */,
 				F18C4356197047FC00EC2C82 /* Calendar.swift in Sources */,
 				F18C435D1970584D00EC2C82 /* DayCollectionViewCell.swift in Sources */,
+				F113B730197168800020CD8A /* Helper.swift in Sources */,
+				F1013F7E1971EDDC00A70595 /* SettingsTableViewController.swift in Sources */,
+				F1013F841971FEDE00A70595 /* BookmarkDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

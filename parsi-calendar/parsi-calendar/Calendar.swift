@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum MonthNames {
 	static var en = ["FRAVARDIN","ARDIBEHESHT","KHORDAD","TIR","AMARDAD","SHEHREVAR","MEHER","AVAN","ADAR","DAE","BAHMAN","ASPANDARD"]
@@ -22,29 +23,6 @@ enum Dates {
 	static let gregDate = NSDate.fromComponents(18, month:8, year:2013)
 	
 	static let impDays = [0,2,8,16,18,19]
-}
-
-enum Colors {
-	static var weekendColor:UIColor {
-	return UIColor(hue:210.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
-	}
-	
-	static var importantDay:UIColor {
-	return UIColor(hue:1.0, saturation:1.0, brightness:0.9, alpha:1.0)
-	}
-	
-	static var gathaDay:UIColor {
-	return UIColor(hue:150.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
-	}
-	
-	static var today:UIColor {
-	return UIColor(hue:37.0/360.0, saturation:0.15, brightness:0.90, alpha:0.5)
-	}
-
-	static var todayBorder:UIColor {
-	return UIColor(hue:210.0/360.0, saturation:1.0, brightness:1.0, alpha:0.5)
-	}
-	
 }
 
 class Calendar: NSObject {
@@ -106,4 +84,84 @@ class Calendar: NSObject {
 		
 		return abs(diff.integerValue)
 	}
+	
+	class func isSpecialDay(dt:NSDate) -> Bool {
+		let day = Calendar.getParsiDay(dt)
+		let month = Calendar.getParsiMonth(dt)
+		
+		if Dates.impDays.bridgeToObjectiveC().containsObject(day) {
+			return true
+		}
+		if day == 9 && month == 7 {
+			return true
+		}
+		
+		return false
+	}
+	
+	class func getDayExtraForCell(dt:NSDate) -> String[]! {
+		let day = Calendar.getParsiDay(dt)
+		let month = Calendar.getParsiMonth(dt)
+		
+		var returnValue:String[] = []
+		
+		let context = Statics.appDelegate.managedObjectContext
+		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: context)
+		
+		let fetchRequest = NSFetchRequest()
+		fetchRequest.entity = entity
+		fetchRequest.fetchBatchSize = 0
+		fetchRequest.predicate = NSPredicate(format: "self.day == %@ && self.month == %@", NSNumber(integer: day), NSNumber(integer: month))
+		
+		var count = 3
+		if dt.on(NSDate.fromComponents(21, month: 3, year: dt.components().year)) {
+			returnValue += "Jamshedji Navroz"
+			count = 2
+		}
+		
+		var error: NSError? = nil
+		if let results = context.executeFetchRequest(fetchRequest, error: &error) {
+			for o:AnyObject in results {
+				returnValue += (o as BookmarkDay).bookmarkTitle
+				if returnValue.count == 2 && results.count > count {
+					returnValue += "\(results.count - 2) more…"
+					return returnValue
+				}
+			}
+		}
+		
+		
+		return returnValue
+	}
+	
+	class func getDayExtraForAlert(dt:NSDate) -> String! {
+		let day = Calendar.getParsiDay(dt)
+		let month = Calendar.getParsiMonth(dt)
+		
+		var returnValue:String = ""
+		
+		let context = Statics.appDelegate.managedObjectContext
+		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: context)
+		
+		let fetchRequest = NSFetchRequest()
+		fetchRequest.entity = entity
+		fetchRequest.fetchBatchSize = 0
+		fetchRequest.predicate = NSPredicate(format: "self.day == %@ && self.month == %@", NSNumber(integer: day), NSNumber(integer: month))
+		
+		var error: NSError? = nil, idx = 0
+		
+		if dt.on(NSDate.fromComponents(21, month: 3, year: dt.components().year)) {
+			returnValue += "Jamshedji Navroz\n"
+		}
+		
+		if let results = context.executeFetchRequest(fetchRequest, error: &error) {
+			for o:AnyObject in results {
+				returnValue += (o as BookmarkDay).bookmarkTitle + "\n"
+			}
+		}
+		
+		
+		return returnValue
+	}
+
 }

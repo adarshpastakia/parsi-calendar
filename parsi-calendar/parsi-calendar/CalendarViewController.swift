@@ -13,15 +13,6 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	@IBOutlet var tableView:UITableView
 	@IBOutlet var collectionView:UICollectionView
 	
-	init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		// Custom initialization
-	}
-	
-	init(coder aDecoder: NSCoder!) {
-		super.init(coder: aDecoder)
-	}
-	
 	var currentViewDate = NSDate()
 	var firstDate = NSDate()
 	
@@ -34,10 +25,24 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		// self.clearsSelectionOnViewWillAppear = false
 		
 		// Do any additional setup after loading the view.
+		today(nil)
 	}
 	
 	override func viewDidAppear(animated: Bool) {
-		today(nil)
+		if UIDevice.currentDevice().userInterfaceIdiom != .Pad {
+			if currentViewDate.isToday() {
+				var day = Calendar.getParsiDay(NSDate())
+				var indexPath = NSIndexPath(forRow: day, inSection: 0)
+				if day > getSectionItems(0) {
+					day = day - getSectionItems(0)
+					indexPath = NSIndexPath(forRow: day, inSection: 1)
+				}
+				tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
+			}
+			else {
+				tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
+			}
+		}
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -100,18 +105,14 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		return df.stringFromDate(firstDate)
 	}
 	
-	func getDayExtra(dt:NSDate) -> String {
-		if Calendar.getParsiMonth(dt) == 0 && Calendar.getParsiDay(dt) == 0 {
-			return "Navroz"
-		}
-		if Calendar.getParsiMonth(dt) == 0 && Calendar.getParsiDay(dt) == 5 {
-			return "Khordad Saal"
-		}
-		if dt.on(NSDate.fromComponents(21, month: 3, year: dt.components().year)) {
-			return "Jamedshji Navroz"
+	func getDate(indexPath:NSIndexPath) -> NSDate {
+		var dayNo = indexPath.row
+		
+		if indexPath.section == 1 {
+			dayNo = indexPath.row + getSectionItems(0)
 		}
 		
-		return ""
+		return firstDate.addTimeInterval(Double(dayNo) * 24*60*60) as NSDate
 	}
 	
 	// #pragma mark UICollectionViewDataSource
@@ -127,15 +128,10 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath?) -> UICollectionViewCell? {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DayCell", forIndexPath: indexPath) as DayCollectionViewCell
 		
-		var dayNo = indexPath!.row
-		
-		if indexPath!.section == 1 {
-			dayNo = indexPath!.row + getSectionItems(0)
-		}
-		var dt:NSDate = firstDate.addTimeInterval(Double(dayNo) * 24*60*60) as NSDate
+		var dt:NSDate = getDate(indexPath!)
 		
 		cell.backgroundColor = UIColor.whiteColor()
-		cell.layer.cornerRadius = 8
+		cell.layer.cornerRadius = 4
 		cell.layer.borderWidth = 1
 		cell.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
 		
@@ -163,7 +159,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			cell.lbWeekday.textColor = UIColor.whiteColor()
 			cell.lbWeekday.backgroundColor = Colors.weekendColor
 		}
-		if Dates.impDays.bridgeToObjectiveC().containsObject(day) {
+		if Calendar.isSpecialDay(dt) {
 			cell.lbDayName.textColor = UIColor.whiteColor()
 			cell.lbDayName.backgroundColor = Colors.importantDay
 		}
@@ -174,11 +170,18 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		
 		if dt.isToday() {
 			cell.backgroundColor = Colors.today
-			cell.layer.borderWidth = 2
+			cell.layer.borderWidth = 1
 			cell.layer.borderColor = Colors.todayBorder.CGColor
 		}
 		
-		cell.lbExtra.text = getDayExtra(dt)
+		cell.lbExtra1.text = ""
+		cell.lbExtra2.text = ""
+		cell.lbExtraMore.text = ""
+		if let extras = Calendar.getDayExtraForCell(dt) {
+			if extras.count > 0 { cell.lbExtra1.text = extras[0] }
+			if extras.count > 1 { cell.lbExtra2.text = extras[1] }
+			if extras.count > 2 { cell.lbExtraMore.text = extras[2] }
+		}
 		
 		return cell
 	}
@@ -193,6 +196,18 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		lb.text = getSectionTitle(indexPath.section)
 		
 		return view
+	}
+	
+	func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
+		var dt:NSDate = getDate(indexPath!)
+		let extras = Calendar.getDayExtraForAlert(dt)
+		if !extras.isEmpty {
+			var day:Int = Calendar.getParsiDay(dt)
+			var month:Int = Calendar.getParsiMonth(dt)
+			df.dateFormat = "dd MMM yyyy"
+			var date = df.stringFromDate(dt)
+			Helper.showAlert("\(DayNames.en[day]), \(MonthNames.en[month])", msg: "\(date)\n\n\(extras)")
+		}
 	}
 	
 	
@@ -212,11 +227,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
 		let cell = tableView.dequeueReusableCellWithIdentifier("DayCell", forIndexPath: indexPath) as DayTableViewCell
 		
-		var dt:NSDate = firstDate.addTimeInterval(Double(indexPath!.row) * 24*60*60) as NSDate
-		
-		if indexPath!.section == 1 {
-			dt = firstDate.addTimeInterval(Double(indexPath!.row + getSectionItems(0)) * 24*60*60) as NSDate
-		}
+		var dt:NSDate = getDate(indexPath!)
 		
 		cell.backgroundColor = UIColor.whiteColor()
 		
@@ -247,7 +258,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			cell.lbWeekday.textColor = UIColor.whiteColor()
 			cell.lbWeekday.backgroundColor = Colors.weekendColor
 		}
-		if Dates.impDays.bridgeToObjectiveC().containsObject(day) {
+		if Calendar.isSpecialDay(dt) {
 			cell.lbDayName.textColor = UIColor.whiteColor()
 			cell.lbDayName.backgroundColor = Colors.importantDay
 		}
@@ -263,9 +274,29 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			cell.ivTodayBottom.hidden = false
 		}
 		
-		cell.lbExtra.text = getDayExtra(dt)
+		cell.lbExtra1.text = ""
+		cell.lbExtra2.text = ""
+		cell.lbExtraMore.text = ""
+		if let extras = Calendar.getDayExtraForCell(dt) {
+			if extras.count > 0 { cell.lbExtra1.text = extras[0] }
+			if extras.count > 1 { cell.lbExtra2.text = extras[1] }
+			if extras.count > 2 { cell.lbExtraMore.text = extras[2] }
+		}
 		
 		return cell
+	}
+	
+	func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+		var dt:NSDate = getDate(indexPath!)
+		let extras = Calendar.getDayExtraForAlert(dt)
+		if !extras.isEmpty {
+			var day:Int = Calendar.getParsiDay(dt)
+			var month:Int = Calendar.getParsiMonth(dt)
+			df.dateFormat = "dd MMM yyyy"
+			var date = df.stringFromDate(dt)
+			Helper.showAlert("\(DayNames.en[day]), \(MonthNames.en[month])", msg: "\(date)\n\n\(extras)")
+		}
+		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 	}
 	
 	// #pragma mark - actions
