@@ -10,8 +10,8 @@ import UIKit
 
 class CalendarViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate {
 	
-	@IBOutlet var tableView:UITableView
-	@IBOutlet var collectionView:UICollectionView
+	@IBOutlet var tableView:UITableView!
+	@IBOutlet var collectionView:UICollectionView!
 	
 	var currentViewDate = NSDate()
 	var firstDate = NSDate()
@@ -55,7 +55,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		firstDate = currentViewDate.dateByAddingTimeInterval(Double(day)*Double(-1*24*60*60))
 		var month = Calendar.getParsiMonth(firstDate)
 		
-		self.navigationItem.title = "\(MonthNames.en[month]) \(Calendar.getParsiYear(firstDate))"
+ 		self.navigationItem.title = "\(MonthNames.name(month)) \(Calendar.yearLabel(Calendar.getParsiYear(firstDate)))"
 		
 		if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
 			collectionView.reloadData()
@@ -112,23 +112,22 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			dayNo = indexPath.row + getSectionItems(0)
 		}
 		
-		return firstDate.addTimeInterval(Double(dayNo) * 24*60*60) as NSDate
+		return  firstDate.dateByAddingTimeInterval(Double(dayNo) * 24*60*60) as NSDate
 	}
 	
 	// #pragma mark UICollectionViewDataSource
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView?) -> Int {
+	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 		return 2
 	}
 	
-	
-	func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return getSectionItems(section)
 	}
 	
-	func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath?) -> UICollectionViewCell? {
+	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DayCell", forIndexPath: indexPath) as DayCollectionViewCell
 		
-		var dt:NSDate = getDate(indexPath!)
+		var dt:NSDate = getDate(indexPath)
 		
 		cell.backgroundColor = UIColor.whiteColor()
 		cell.layer.cornerRadius = 4
@@ -152,7 +151,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		cell.lbDayName.layer.cornerRadius = 4
 		
 		var day:Int = Calendar.getParsiDay(dt)
-		cell.lbDayName.text = " \(DayNames.en[day])"
+		cell.lbDayName.text = " \(DayNames.name(day))"
 		
 		if weekday == 1 {
 			cell.lbDate.textColor = Colors.weekendColor
@@ -186,7 +185,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		return cell
 	}
 	
-	func collectionView(collectionView: UICollectionView!, viewForSupplementaryElementOfKind kind: String!, atIndexPath indexPath: NSIndexPath!) -> UICollectionReusableView! {
+	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 		
 		var view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "MonthHeader", forIndexPath: indexPath) as UICollectionReusableView
 		
@@ -198,36 +197,36 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		return view
 	}
 	
-	func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
-		var dt:NSDate = getDate(indexPath!)
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		var dt:NSDate = getDate(indexPath)
 		let extras = Calendar.getDayExtraForAlert(dt)
 		if !extras.isEmpty {
 			var day:Int = Calendar.getParsiDay(dt)
 			var month:Int = Calendar.getParsiMonth(dt)
 			df.dateFormat = "dd MMM yyyy"
 			var date = df.stringFromDate(dt)
-			Helper.showAlert("\(DayNames.en[day]), \(MonthNames.en[month])", msg: "\(date)\n\n\(extras)")
+			Helper.showAlert("\(DayNames.name(day)), \(MonthNames.name(month))", msg: "\(date)\n\n\(extras)")
 		}
 	}
 	
 	
 	// #pragma mark - Table data source
-	func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 2
 	}
 	
-	func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return getSectionItems(section)
 	}
 	
-	func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
 		return "  \(getSectionTitle(section))"
 	}
 	
-	func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("DayCell", forIndexPath: indexPath) as DayTableViewCell
 		
-		var dt:NSDate = getDate(indexPath!)
+		var dt:NSDate = getDate(indexPath)
 		
 		cell.backgroundColor = UIColor.whiteColor()
 		
@@ -237,7 +236,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		cell.lbWeekday.text = df.stringFromDate(dt)
 		
 		var day:Int = Calendar.getParsiDay(dt)
-		cell.lbDayName.text = " \(DayNames.en[day])"
+		cell.lbDayName.text = " \(DayNames.name(day))"
 		
 		let weekday = dt.components().weekday
 		
@@ -286,15 +285,15 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		return cell
 	}
 	
-	func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-		var dt:NSDate = getDate(indexPath!)
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		var dt:NSDate = getDate(indexPath)
 		let extras = Calendar.getDayExtraForAlert(dt)
 		if !extras.isEmpty {
 			var day:Int = Calendar.getParsiDay(dt)
 			var month:Int = Calendar.getParsiMonth(dt)
 			df.dateFormat = "dd MMM yyyy"
 			var date = df.stringFromDate(dt)
-			Helper.showAlert("\(DayNames.en[day]), \(MonthNames.en[month])", msg: "\(date)\n\n\(extras)")
+			Helper.showAlert("\(DayNames.name(day)), \(MonthNames.name(month))", msg: "\(date)\n\n\(extras)")
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 	}

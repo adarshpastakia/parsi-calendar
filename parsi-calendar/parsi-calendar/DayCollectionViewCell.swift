@@ -10,12 +10,12 @@ import UIKit
 
 class DayCollectionViewCell: UICollectionViewCell {
 	
-	@IBOutlet var lbDate:UILabel
-	@IBOutlet var lbDayName:UILabel
-	@IBOutlet var lbWeekday:UILabel
+	@IBOutlet var lbDate:UILabel!
+	@IBOutlet var lbDayName:UILabel!
+	@IBOutlet var lbWeekday:UILabel!
 
-	@IBOutlet var lbExtra1:UILabel
-	@IBOutlet var lbExtra2:UILabel
-	@IBOutlet var lbExtraMore:UILabel
+	@IBOutlet var lbExtra1:UILabel!
+	@IBOutlet var lbExtra2:UILabel!
+	@IBOutlet var lbExtraMore:UILabel!
 	
 }

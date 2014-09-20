@@ -35,7 +35,7 @@ enum Colors {
 // static variables
 enum Statics {
 	static let infoDictionary = NSBundle.mainBundle().infoDictionary
-	static let userDefaults = NSUserDefaults.standardUserDefaults()
+	static let userDefaults = NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")
 	
 	static let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 	
@@ -53,14 +53,14 @@ enum Statics {
 }
 
 enum BundleFields {
-	static var appTitle:String {
-	return Statics.infoDictionary["CFBundleDisplayName"] as String
+	static var appTitle:AnyObject {
+	return Statics.infoDictionary["CFBundleDisplayName"]!
 	}
-	static var version:String {
-	return Statics.infoDictionary["CFBundleShortVersionString"] as String
+	static var version:AnyObject {
+	return Statics.infoDictionary["CFBundleShortVersionString"]!
 	}
-	static var build:String {
-	return Statics.infoDictionary["CFBundleVersion"] as String
+	static var build:AnyObject {
+	return Statics.infoDictionary["CFBundleVersion"]!
 	}
 	
 	static var versionString:String {

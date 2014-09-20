@@ -58,7 +58,7 @@ extension NSDate {
 	class func fromComponents(components:NSDateComponents) -> NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
 		cal.timeZone = NSTimeZone(abbreviation: "GMT")
-		return cal.dateFromComponents(components)
+		return cal.dateFromComponents(components)!
 	}
 	
 	class func fromComponents(day:Int, month:Int, year:Int) -> NSDate {
@@ -71,7 +71,7 @@ extension NSDate {
 		components.month = month
 		components.year = year
 		
-		return cal.dateFromComponents(components)
+		return cal.dateFromComponents(components)!
 		
 	}
 }

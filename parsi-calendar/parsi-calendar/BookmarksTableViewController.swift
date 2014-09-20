@@ -33,11 +33,11 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 	// #pragma mark - Table view data source
 	// #pragma mark - Table view data source
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return self.fetchedResultsController.sections.count
+		return self.fetchedResultsController.sections!.count
 	}
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let sectionInfo = self.fetchedResultsController.sections[section] as NSFetchedResultsSectionInfo
+		let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
 		return section == 0 ? sectionInfo.numberOfObjects + 1 : sectionInfo.numberOfObjects
 	}
 	
@@ -47,12 +47,12 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 		let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
 		//self.configureCell(cell, atIndexPath: indexPath)
 		if indexPath.section == 0 && indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1 {
-			cell.textLabel.text = "Jamshedji Navroz"
-			cell.detailTextLabel.text = "21st - March"
+			cell.textLabel?.text = "Jamshedji Navroz"
+			cell.detailTextLabel?.text = "21st - March"
 		}
 		else if let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as? BookmarkDay {
-			cell.textLabel.text = object.bookmarkTitle
-			cell.detailTextLabel.text = "\(DayNames.en[object.day.integerValue]) - \(MonthNames.en[object.month.integerValue])"
+			cell.textLabel?.text = object.bookmarkTitle
+			cell.detailTextLabel?.text = "\(DayNames.en[object.day.integerValue]) - \(MonthNames.en[object.month.integerValue])"
 		}
 		
 		return cell
@@ -78,7 +78,7 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 		}
 	}
 	
-	override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return section == 0 ? "Default Bookmarks" : "Configured Bookmarks"
 	}
 	
@@ -90,7 +90,7 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 		
 		let fetchRequest = NSFetchRequest()
 		// Edit the entity name as appropriate.
-		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: self.managedObjectContext)
+		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: self.managedObjectContext!)
 		fetchRequest.entity = entity
 		
 		// Set the batch size to a suitable number.
@@ -101,7 +101,7 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 		
 		// Edit the section name key path and cache name if appropriate.
 		// nil for section name key path means "no sections".
-		let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: "isDefault", cacheName: "Bookmarks")
+		let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: "isDefault", cacheName: "Bookmarks")
 		aFetchedResultsController.delegate = self
 		_fetchedResultsController = aFetchedResultsController
 		NSFetchedResultsController.deleteCacheWithName("Bookmarks")
@@ -124,9 +124,9 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 	
 	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 		switch type {
-		case NSFetchedResultsChangeInsert:
+		case NSFetchedResultsChangeType.Insert:
 			self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-		case NSFetchedResultsChangeDelete:
+		case NSFetchedResultsChangeType.Delete:
 			self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
 		default:
 			return
@@ -135,13 +135,13 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
 	
 	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
 		switch type {
-		case NSFetchedResultsChangeInsert:
+		case NSFetchedResultsChangeType.Insert:
 			tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
-		case NSFetchedResultsChangeDelete:
+		case NSFetchedResultsChangeType.Delete:
 			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 			//case NSFetchedResultsChangeUpdate:
 			//self.configureCell(tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell, atIndexPath: indexPath)
-		case NSFetchedResultsChangeMove:
+		case NSFetchedResultsChangeType.Move:
 			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 			tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
 		default:

@@ -18,16 +18,16 @@ class BookmarkDay: NSManagedObject {
 	
 	class func insert(day:Int, month:Int, title:String, isDefault:Bool) {
 		let context = Statics.appDelegate.managedObjectContext
-		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: context)
+		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: context!)
 		
-		let newEntry = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as BookmarkDay
+		let newEntry = NSEntityDescription.insertNewObjectForEntityForName(entity!.name, inManagedObjectContext: context!) as BookmarkDay
 		newEntry.day = NSNumber(integer: day)
 		newEntry.month = NSNumber(integer: month)
 		newEntry.bookmarkTitle = title
 		newEntry.isDefault = NSNumber(bool: isDefault)
 		
 		var error: NSError? = nil
-		if !context.save(&error) {
+		if !((context?.save(&error)) != nil) {
 			println("Unresolved error \(error), \(error!.userInfo)")
 		}
 	}
