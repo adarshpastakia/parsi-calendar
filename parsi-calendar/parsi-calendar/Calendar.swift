@@ -11,11 +11,11 @@ import CoreData
 
 enum MonthNames {
     static var en = ["FRAVARDIN","ARDIBEHESHT","KHORDAD","TIR","AMARDAD","SHEHREVAR","MEHER","AVAN","ADAR","DAE","BAHMAN","ASPANDARD"]
-    static var gj = ["ષરાવારદિન","આરદિભેસથ","કહોરદાદ","તીર","અમરદાદ","સહેહરેવાર","મેહેર","આવન","આદર","દે","બાહમાન","અસપાનદારદ"]
+    static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
-        if Statics.userDefaults.stringForKey("language") == "gj" {
-            return MonthNames.gj[index]
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+            return MonthNames.gu[index]
         }
         return MonthNames.en[index];
     }
@@ -23,11 +23,11 @@ enum MonthNames {
 
 enum DayNames {
     static var en = ["Hormazd","Bahman","Ardibehesht","Shehrevar","Aspandard","Khordad","Amardad","Dae-pa-Adar","Adar","Avan","Khorshed","Meher","Tir","Gosh","Dae-pa-Meher","Meher","Srosh","Rashne","Fravardin","Behram","Ram","Govad","Dae-pa-Din","Din","Ashishvangh","Ashtad","Asman","Zamyad","Mareshpand","Aneran","Ahunavaiti","Ushtavaiti","Spentamainyu","Vohuxshathra","Vahishtoishti"]
-    static var gj = ["હોરમઙદ","બહમન","આરદિભેસથ","સહેહરેવાર","આઅસપાનદારદ","કહોરદાદ","અમરદાદ","દે-પા-દાર","આદર","આવન","ખોરશેદ","મેહેર","તીર","ગોશ","દે-પા-દાર","મેહેર","સરોશ","રાશને","ષરાવારદિન","બેહરામ","રામ","ગોવાદ","દે-પા-દીન","દીન","આશિશવાનઘ","આશતાદ","આસમાન","ઙમયાદ","મારેસપાનદ","અનેરાન","અહુનાવઉતિ","ઇશતાવઉતિ","સપેનતામઉનયુ","વોહુષસહાતરા","વાહિસહતોિસહતિ"]
+    static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
-        if Statics.userDefaults.stringForKey("language") == "gj" {
-            return DayNames.gj[index]
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+            return DayNames.gu[index]
         }
         return DayNames.en[index]
     }
@@ -56,7 +56,7 @@ class Calendar: NSObject {
     }
     
     class func yearLabel(year:CInt) -> String {
-        if Statics.userDefaults.stringForKey("language") == "gj" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
             let y = Int(year)
             let numbers = ["૦","૧","૨","૩","૪","૫","૬","૭","૮","૯"]
             var yr:String = ""
@@ -130,20 +130,20 @@ class Calendar: NSObject {
     
     class func bookmarkLabel(lbl:String) -> String {
         let labels = [
-            "Jamshedji Navroz"      : "જમસહેદજિ નાવરોઙ",
-            "Navroz"                : "નાવરોઙ",
-            "Khordad Saal"          : "કહોરદાદ સાલ",
-            "Ava Ardvisur"          : "આવા ારદવિસુર",
-            "Adar Yazad Jashan"     : "આદાર યાઙાદ જસહન",
-            "Zarthost no Diso"      : "ઙારતહોસહત નો દિસો",
-            "Homaji ni Baj"         : "હોમાજી નિ બાજ",
-            "First Gatha"           : "પેહલો ગહાતો",
-            "Second Gatha"          : "બિજો ગહાતો",
-            "Third Gatha"           : "તિજો ગહાતો",
-            "Fourth Gatha"          : "ચહોતો ગહાતો",
-            "Fifth Gatha (Papeti)"  : "પાનચહવો ગહાતો (પપેતિ)"
+            "Jamshedji Navroz"      : "જમશેદજી નવરોઝ",
+            "Navroz"                : "નવરોઝ",
+            "Khordad Saal"          : "ખોરદાદ સાલ",
+            "Ava Ardvisur"          : "આવાં અર્દવીસુ",
+            "Adar Yazad Jashan"     : "આદર યઝદ જશન",
+            "Zarthost no Diso"      : "જરથોશ્ત નો દીસો",
+            "Homaji ni Baj"         : "હોમાજી ની બાજ",
+            "First Gatha"           : "પેહલો ગાથો",
+            "Second Gatha"          : "બીજો ગાથો",
+            "Third Gatha"           : "તીજો ગાથો",
+            "Fourth Gatha"          : "ચોથો ગાથો",
+            "Fifth Gatha (Papeti)"  : "પાનચવો ગાથો (પટેટી)"
         ]
-        if Statics.userDefaults.stringForKey("language") == "gj" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
             return labels[lbl]!
         }
         return lbl

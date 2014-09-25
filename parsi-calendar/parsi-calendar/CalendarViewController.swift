@@ -26,7 +26,13 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		
 		// Do any additional setup after loading the view.
 		today(nil)
+        
+        Statics.userDefaults.addObserver(self, forKeyPath: "language", options: .New, context: nil)
 	}
+    
+    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafeMutablePointer<Void>) {
+        NSLog("Observed %@", keyPath)
+    }
 	
 	override func viewDidAppear(animated: Bool) {
 		if UIDevice.currentDevice().userInterfaceIdiom != .Pad {

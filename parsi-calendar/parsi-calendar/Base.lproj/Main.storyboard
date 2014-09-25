@@ -466,7 +466,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="Labels will change next time you start the app" id="qJC-Bb-VIB">
+                            <tableViewSection footerTitle="Labels will change upon changing months or tapping today" id="qJC-Bb-VIB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="HV0-Ke-Fuf" style="IBUITableViewCellStyleDefault" id="LvX-7t-816">
                                         <autoresizingMask key="autoresizingMask"/>

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         if !Statics.userDefaults.boolForKey("initialized") {
+            BookmarkDay.removeAll()
             BookmarkDay.insert(0, month: 0, title: "Navroz", isDefault: true)
             BookmarkDay.insert(5, month: 0, title: "Khordad Saal", isDefault: true)
             BookmarkDay.insert(9, month: 7, title: "Ava Ardvisur", isDefault: true)

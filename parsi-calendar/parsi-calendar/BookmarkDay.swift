@@ -31,4 +31,21 @@ class BookmarkDay: NSManagedObject {
 			println("Unresolved error \(error), \(error!.userInfo)")
 		}
 	}
+    
+    class func removeAll() {
+        let context = Statics.appDelegate.managedObjectContext
+        let fetch = NSFetchRequest(entityName: "Bookmarks")
+        
+        var error: NSError? = nil
+        
+        var result:NSArray = context?.executeFetchRequest(fetch, error: &error) as NSArray!
+        for item in result
+        {
+            context?.deleteObject(item as NSManagedObject)
+        }
+        
+        if !((context?.save(&error)) != nil) {
+            println("Unresolved error \(error), \(error!.userInfo)")
+        }
+    }
 }

@@ -10,11 +10,11 @@ import UIKit
 
 enum WdMonthNames {
     static var en = ["FRAVARDIN","ARDIBEHESHT","KHORDAD","TIR","AMARDAD","SHEHREVAR","MEHER","AVAN","ADAR","DAE","BAHMAN","ASPANDARD"]
-    static var gj = ["ષરાવારદિન","આરદિભેસથ","કહોરદાદ","તીર","અમરદાદ","સહેહરેવાર","મેહેર","આવન","આદર","દે","બાહમાન","અસપાનદારદ"]
+    static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gj" {
-            return "માહ: " + WdMonthNames.gj[index]
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+            return "માહ: " + WdMonthNames.gu[index]
         }
         return "Mah: " + WdMonthNames.en[index];
     }
@@ -22,11 +22,11 @@ enum WdMonthNames {
 
 enum WdDayNames {
     static var en = ["Hormazd","Bahman","Ardibehesht","Shehrevar","Aspandard","Khordad","Amardad","Dae-pa-Adar","Adar","Avan","Khorshed","Meher","Tir","Gosh","Dae-pa-Meher","Meher","Srosh","Rashne","Fravardin","Behram","Ram","Govad","Dae-pa-Din","Din","Ashishvangh","Ashtad","Asman","Zamyad","Mareshpand","Aneran","Ahunavaiti","Ushtavaiti","Spentamainyu","Vohuxshathra","Vahishtoishti"]
-    static var gj = ["હોરમઙદ","બહમન","આરદિભેસથ","સહેહરેવાર","આઅસપાનદારદ","કહોરદાદ","અમરદાદ","દે-પા-દાર","આદર","આવન","ખોરશેદ","મેહેર","તીર","ગોશ","દે-પા-દાર","મેહેર","સરોશ","રાશને","ષરાવારદિન","બેહરામ","રામ","ગોવાદ","દે-પા-દીન","દીન","આશિશવાનઘ","આશતાદ","આસમાન","ઙમયાદ","મારેસપાનદ","અનેરાન","અહુનાવઉતિ","ઇશતાવઉતિ","સપેનતામઉનયુ","વોહુષસહાતરા","વાહિસહતોિસહતિ"]
+    static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gj" {
-            return "રોજ: " + WdDayNames.gj[index]
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+            return "રોજ: " + WdDayNames.gu[index]
         }
         return "Roj: " + WdDayNames.en[index]
     }
