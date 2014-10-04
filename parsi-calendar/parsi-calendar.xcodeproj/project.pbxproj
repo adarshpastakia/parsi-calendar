@@ -17,6 +17,7 @@
 		F15F86F919706A7E00461B06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F15F86F819706A7E00461B06 /* MainInterface.storyboard */; };
 		F15F870419706C7D00461B06 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15F870319706C7D00461B06 /* Calendar.swift */; };
 		F15F870619706C9E00461B06 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15F870519706C9E00461B06 /* DateHelper.swift */; };
+		F185F1C019DF5B5F00E614E1 /* BookmarkFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F185F1BF19DF5B5F00E614E1 /* BookmarkFormViewController.swift */; };
 		F18C43321970424200EC2C82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C43311970424200EC2C82 /* AppDelegate.swift */; };
 		F18C43351970424200EC2C82 /* parsi_calendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F18C43331970424200EC2C82 /* parsi_calendar.xcdatamodeld */; };
 		F18C433C1970424200EC2C82 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18C433B1970424200EC2C82 /* Images.xcassets */; };
@@ -84,6 +85,7 @@
 		F15F86F819706A7E00461B06 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		F15F870319706C7D00461B06 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		F15F870519706C9E00461B06 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		F185F1BF19DF5B5F00E614E1 /* BookmarkFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkFormViewController.swift; sourceTree = "<group>"; };
 		F18C432C1970424200EC2C82 /* parsi-calendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "parsi-calendar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18C43301970424200EC2C82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18C43311970424200EC2C82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				F1013F7D1971EDDC00A70595 /* SettingsTableViewController.swift */,
 				F1013F811971EE9400A70595 /* SettingsViewController.swift */,
 				F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */,
+				F185F1BF19DF5B5F00E614E1 /* BookmarkFormViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				F18C435D1970584D00EC2C82 /* DayCollectionViewCell.swift in Sources */,
 				F113B730197168800020CD8A /* Helper.swift in Sources */,
 				F1013F7E1971EDDC00A70595 /* SettingsTableViewController.swift in Sources */,
+				F185F1C019DF5B5F00E614E1 /* BookmarkFormViewController.swift in Sources */,
 				F1013F841971FEDE00A70595 /* BookmarkDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

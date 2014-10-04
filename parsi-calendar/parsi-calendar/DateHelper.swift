@@ -31,7 +31,7 @@ extension NSDate {
 	}
 	func on(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
+        return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
 	}
 	
 	func onOrBefore(date:NSDate) -> Bool {
@@ -42,13 +42,33 @@ extension NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
 		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) != NSComparisonResult.OrderedAscending
 	}
-	
-	class func hourInterval(hrs:CDouble) -> CDouble {
+    
+    func clearTime() -> NSDate {
+        let comp = self.components()
+        comp.hour = 0
+        comp.minute = 0
+        comp.second = 0
+        return NSDate.fromComponents(comp)
+    }
+    
+    func add(days count:Int) -> NSDate {
+        let comp = self.components()
+        comp.day += count
+        return NSDate.fromComponents(comp)
+    }
+    
+    func add(months count:Int) -> NSDate {
+        let comp = self.components()
+        comp.month += count
+        return NSDate.fromComponents(comp)
+    }
+    
+	/*class func hourInterval(hrs:CDouble) -> CDouble {
 		return hrs * 60 * 60 * 1000
 	}
 	class func dayInterval(days:CDouble) -> CDouble {
 		return days * 24 * 60 * 60 * 1000
-	}
+	}*/
 	
 	func components() -> NSDateComponents {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
@@ -57,13 +77,13 @@ extension NSDate {
 	
 	class func fromComponents(components:NSDateComponents) -> NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		cal.timeZone = NSTimeZone(abbreviation: "GMT")
+		//cal.timeZone = NSTimeZone(abbreviation: "GMT")
 		return cal.dateFromComponents(components)!
 	}
 	
 	class func fromComponents(day:Int, month:Int, year:Int) -> NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		cal.timeZone = NSTimeZone(abbreviation: "GMT")
+		//cal.timeZone = NSTimeZone(abbreviation: "GMT")
 		
 		var components = NSDate().components()
 		

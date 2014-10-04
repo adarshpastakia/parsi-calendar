@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 enum Colors {
     static var weekendColor:UIColor {
@@ -74,5 +75,25 @@ class Helper: NSObject {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
         Statics.rootView!.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    class func registerForKeybaordNotifications(view:UIViewController, onShow:Selector, onHide:Selector) {
+        NSNotificationCenter.defaultCenter().addObserver(view, selector: onShow, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(view, selector: onHide, name: UIKeyboardDidHideNotification, object: nil)
+    }
+    
+    class func vibrateView(view:UIView) {
+        
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        let x = view.frame.origin.x+(view.frame.size.width/2)
+        let scaleAnimation = CABasicAnimation(keyPath: "position.x")
+        scaleAnimation.duration = 0.06
+        scaleAnimation.repeatCount = 5
+        scaleAnimation.autoreverses = true
+        scaleAnimation.fromValue = x
+        scaleAnimation.toValue = x-5
+        
+        view.layer.addAnimation(scaleAnimation, forKey:"position.x")
     }
 }

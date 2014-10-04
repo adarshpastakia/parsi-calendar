@@ -56,7 +56,7 @@ class Calendar: NSObject {
     }
     
     class func yearLabel(year:CInt) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        /*if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
             let y = Int(year)
             let numbers = ["૦","૧","૨","૩","૪","૫","૬","૭","૮","૯"]
             var yr:String = ""
@@ -64,9 +64,9 @@ class Calendar: NSObject {
             yr += numbers[y % 100 / 10]
             yr += numbers[y % 1000 / 100]
             yr += numbers[y % 10000 / 1000]
-            return yr;
-        }
-        return "\(year)"
+            return "\(yr) YZ";
+        }*/
+        return "\(year) YZ"
     }
     
     class func getParsiMonth(date:NSDate)  -> Int {
@@ -100,11 +100,11 @@ class Calendar: NSObject {
         
         if ti > 0 {
             day = floor((ti / (24*60*60))) % 365
-            diff = floor((floor((ti / (24*60*60))) % 365) % 30.0)
+            diff = floor(day % 30.0)
         }
         else {
             day = ceil((ti / (24*60*60))) % 365
-            diff = ceil((ceil((ti / (24*60*60))) % 365) % 30.0)
+            diff = ceil(day % 30.0)
         }
         
         if abs(day.integerValue) >= 360 {
@@ -144,7 +144,10 @@ class Calendar: NSObject {
             "Fifth Gatha (Papeti)"  : "પાનચવો ગાથો (પટેટી)"
         ]
         if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
-            return labels[lbl]!
+            if let ret = labels[lbl] {
+                return ret
+            }
+            return lbl
         }
         return lbl
     }

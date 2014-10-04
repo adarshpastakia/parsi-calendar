@@ -26,29 +26,18 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		
 		// Do any additional setup after loading the view.
 		today(nil)
-        
-        Statics.userDefaults.addObserver(self, forKeyPath: "language", options: .New, context: nil)
 	}
     
-    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafeMutablePointer<Void>) {
-        NSLog("Observed %@", keyPath)
-    }
-	
 	override func viewDidAppear(animated: Bool) {
-		if UIDevice.currentDevice().userInterfaceIdiom != .Pad {
-			if currentViewDate.isToday() {
-				var day = Calendar.getParsiDay(NSDate())
-				var indexPath = NSIndexPath(forRow: day, inSection: 0)
-				if day > getSectionItems(0) {
-					day = day - getSectionItems(0)
-					indexPath = NSIndexPath(forRow: day, inSection: 1)
-				}
-				tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
-			}
-			else {
-				tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
-			}
-		}
+		var month = Calendar.getParsiMonth(firstDate)
+        self.navigationItem.title = "\(MonthNames.name(month)) - \(Calendar.yearLabel(Calendar.getParsiYear(firstDate)))"
+        
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            collectionView.reloadData()
+        }
+        else {
+            tableView.reloadData()
+        }
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -58,10 +47,10 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	
 	func configureView() {
 		var day = Calendar.getParsiDay(currentViewDate)
-		firstDate = currentViewDate.dateByAddingTimeInterval(Double(day)*Double(-1*24*60*60))
+		firstDate = currentViewDate.add(days: Int(day)*Int(-1))
 		var month = Calendar.getParsiMonth(firstDate)
 		
- 		self.navigationItem.title = "\(MonthNames.name(month)) \(Calendar.yearLabel(Calendar.getParsiYear(firstDate)))"
+ 		self.navigationItem.title = "\(MonthNames.name(month)) - \(Calendar.yearLabel(Calendar.getParsiYear(firstDate)))"
 		
 		if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
 			collectionView.reloadData()
@@ -121,7 +110,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		return  firstDate.dateByAddingTimeInterval(Double(dayNo) * 24*60*60) as NSDate
 	}
 	
-	// #pragma mark UICollectionViewDataSource
+	// MARK: - UICollectionViewDataSource
 	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 		return 2
 	}
@@ -129,6 +118,12 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return getSectionItems(section)
 	}
+    
+    func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
+        view.layer.borderWidth = 0.5
+        view.layer.borderColor =  UIColor(hue:139.0/360.0, saturation:0.22, brightness:0.72, alpha:1.0).CGColor
+        view.backgroundColor = UIColor(hue:139.0/360.0, saturation:0.02, brightness:0.96, alpha:1.0)
+    }
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DayCell", forIndexPath: indexPath) as DayCollectionViewCell
@@ -216,7 +211,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	}
 	
 	
-	// #pragma mark - Table data source
+	// MARK: - Table data source
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 2
 	}
@@ -228,6 +223,12 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
 		return "  \(getSectionTitle(section))"
 	}
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as UITableViewHeaderFooterView).contentView.layer.borderWidth = 0.5
+        (view as UITableViewHeaderFooterView).contentView.layer.borderColor =  UIColor(hue:139.0/360.0, saturation:0.22, brightness:0.72, alpha:1.0).CGColor
+        (view as UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(hue:139.0/360.0, saturation:0.02, brightness:0.96, alpha:1.0)
+    }
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("DayCell", forIndexPath: indexPath) as DayTableViewCell
@@ -306,21 +307,21 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 	
 	// #pragma mark - actions
 	@IBAction func nextMonth(sender:AnyObject!) {
-		currentViewDate = currentViewDate.dateByAddingTimeInterval(30*24*60*60)
+		currentViewDate = currentViewDate.add(days: 30)
 		if Calendar.getParsiMonth(currentViewDate) == 11 {
-			currentViewDate = currentViewDate.dateByAddingTimeInterval(5*24*60*60)
+			currentViewDate = currentViewDate.add(days: 5)
 		}
 		configureView()
 	}
 	@IBAction func prevMonth(sender:AnyObject!) {
-		currentViewDate = currentViewDate.dateByAddingTimeInterval(-30*24*60*60)
+		currentViewDate = currentViewDate.add(days: -30)
 		if Calendar.getParsiMonth(currentViewDate) == 11 {
-			currentViewDate = currentViewDate.dateByAddingTimeInterval(-5*24*60*60)
+			currentViewDate = currentViewDate.add(days: -5)
 		}
 		configureView()
 	}
 	@IBAction func today(sender:AnyObject!) {
-		currentViewDate = NSDate()
+		currentViewDate = NSDate().clearTime()
 		configureView()
 	}
 }

@@ -45,6 +45,7 @@ class BookmarkDay: NSManagedObject {
         }
         
         if !((context?.save(&error)) != nil) {
+            Helper.showAlert("Bookmarks", msg: "Oops!! Encountered an error saving new bookmark")
             println("Unresolved error \(error), \(error!.userInfo)")
         }
     }

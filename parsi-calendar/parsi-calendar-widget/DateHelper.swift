@@ -53,13 +53,11 @@ extension NSDate {
 	
 	class func fromComponents(components:NSDateComponents) -> NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		cal.timeZone = NSTimeZone(abbreviation: "GMT")
 		return cal.dateFromComponents(components)!
 	}
 	
 	class func fromComponents(day:Int, month:Int, year:Int) -> NSDate {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		cal.timeZone = NSTimeZone(abbreviation: "GMT")
 		
 		var components = NSDate().components()
 		
