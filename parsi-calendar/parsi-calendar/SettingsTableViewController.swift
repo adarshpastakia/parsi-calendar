@@ -11,7 +11,7 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
     
     var unlocked = true
-    var cells = [["AboutCell"], ["LanguageCell"], ["BookmarksCell", "NotificationCell"]]
+    var cells = [["AboutCell"], ["LanguageCell"], ["BookmarksCell", "IcloudEnableCell", "SyncNowCell"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
-            return unlocked ? 2 : 1
+            return unlocked ? 3 : 1
         }
         return 1
     }
