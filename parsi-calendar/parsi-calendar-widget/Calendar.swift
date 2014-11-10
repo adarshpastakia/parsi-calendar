@@ -13,7 +13,7 @@ enum WdMonthNames {
     static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")?.stringForKey("language") == "gu" {
             return "માહ: " + WdMonthNames.gu[index]
         }
         return "Mah: " + WdMonthNames.en[index];
@@ -25,7 +25,7 @@ enum WdDayNames {
     static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")?.stringForKey("language") == "gu" {
             return "રોજ: " + WdDayNames.gu[index]
         }
         return "Roj: " + WdDayNames.en[index]
@@ -65,61 +65,50 @@ enum WdColors {
 
 class WdCalendar: NSObject {
 	
-	class func getParsiYear(date:NSDate) -> CInt {
-		let ti = date.timeIntervalSinceDate(WdDates.gregDate)
-		var diff:NSNumber = 0
-		
-		if ti > 0 {
-			diff = floor((ti / (24*60*60))/365)
-		}
-		else {
-			diff = ceil((ti / (24*60*60))/365)
-		}
-		return WdDates.pYear + diff.intValue
-	}
-	
-	class func getParsiMonth(date:NSDate)  -> Int {
-		let ti = date.timeIntervalSinceDate(WdDates.gregDate)
-		
-		var diff:NSNumber = 0
-		var day:NSNumber = 0
-		
-		if ti > 0 {
-			day = floor((ti / (24*60*60))) % 365
-			diff = floor((floor((ti / (24*60*60))) % 365) / 30.0)
-		}
-		else {
-			day = ceil((ti / (24*60*60))) % 365
-			diff = ceil((ceil((ti / (24*60*60))) % 365) / 30.0)
-		}
-		
-		if abs(day.integerValue) >= 360 {
-			return 11
-		}
-		
-		return abs(diff.integerValue)
-	}
-	
-	
-	class func getParsiDay(date:NSDate)  -> Int {
-		let ti = date.timeIntervalSinceDate(WdDates.gregDate)
-		
-		var diff:NSNumber = 0
-		var day:NSNumber = 0
-		
-		if ti > 0 {
-			day = floor((ti / (24*60*60))) % 365
-			diff = floor((floor((ti / (24*60*60))) % 365) % 30.0)
-		}
-		else {
-			day = ceil((ti / (24*60*60))) % 365
-			diff = ceil((ceil((ti / (24*60*60))) % 365) % 30.0)
-		}
-		
-		if abs(day.integerValue) >= 360 {
-			return 30 + (abs(day.integerValue) % 360)
-		}
-		
-		return abs(diff.integerValue)
-	}
+    class func getParsiYear(date:NSDate) -> CInt {
+        var days = date.daysSince(WdDates.gregDate!)
+        var day = days / 365
+        return WdDates.pYear + abs(day)
+    }
+    
+    class func yearLabel(year:CInt) -> String {
+        /*if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        let y = Int(year)
+        let numbers = ["૦","૧","૨","૩","૪","૫","૬","૭","૮","૯"]
+        var yr:String = ""
+        yr += numbers[y % 10]
+        yr += numbers[y % 100 / 10]
+        yr += numbers[y % 1000 / 100]
+        yr += numbers[y % 10000 / 1000]
+        return "\(yr) YZ";
+        }*/
+        return "\(year) YZ"
+    }
+    
+    class func getParsiMonth(date:NSDate)  -> Int {
+        var days = date.daysSince(WdDates.gregDate!)
+        var day = days % 365
+        var diff = day / 30
+        
+        if abs(day) >= 360 {
+            return 11
+        }
+        
+        return abs(diff)
+    }
+    
+    
+    class func getParsiDay(date:NSDate)  -> Int {
+        var days = date.daysSince(WdDates.gregDate!)
+        var day = days % 365
+        var diff = day % 30
+        
+        NSLog("Date: %@,\n Days: %d, Day: %d, Diff: %d", date.formatted("dd MMM yyyy"), days, day, diff)
+        
+        if abs(day) >= 360 {
+            return 30 + (abs(day) % 360)
+        }
+        
+        return abs(diff)
+    }
 }

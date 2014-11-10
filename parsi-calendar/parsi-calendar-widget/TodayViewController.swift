@@ -38,7 +38,7 @@ class TodayViewController: UIViewController {
         var day = WdCalendar.getParsiDay(NSDate())
         var month = WdCalendar.getParsiMonth(NSDate())
         
-        lbDate.text = "\(WdDayNames.name(day))\n\(WdMonthNames.name(month))"
+        lbDate.text = "\(WdDayNames.name(day)) - \(WdMonthNames.name(month))"
         
         ivDate.backgroundColor = UIColor.lightTextColor()
         ivTomorrow.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.75)
@@ -54,7 +54,7 @@ class TodayViewController: UIViewController {
         var nday = WdCalendar.getParsiDay(NSDate(timeIntervalSinceNow: 24*60*60))
         var nmonth = WdCalendar.getParsiMonth(NSDate(timeIntervalSinceNow: 24*60*60))
         
-        lbTomorrow.text = "Tomorrow\n\(WdDayNames.name(nday))\n\(WdMonthNames.name(nmonth))"
+        lbTomorrow.text = "Tomorrow\n\(WdDayNames.name(nday)) - \(WdMonthNames.name(nmonth))"
         
         if contains(WdDates.impDays, nday) {
             lbTomorrow.textColor = UIColor.whiteColor()

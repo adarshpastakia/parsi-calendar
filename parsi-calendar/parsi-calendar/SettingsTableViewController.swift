@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import StoreKit
+import CloudKit
 
 class SettingsTableViewController: UITableViewController {
     
@@ -37,13 +39,13 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if !unlocked {
+        if !unlocked && indexPath.section == 2 {
             return tableView.dequeueReusableCellWithIdentifier("InAppCell", forIndexPath: indexPath) as UITableViewCell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(cells[indexPath.section][indexPath.row], forIndexPath: indexPath) as UITableViewCell
         
         if indexPath.section == 1 {
-            (cell.contentView.viewWithTag(1) as UISwitch).on = (Statics.userDefaults.stringForKey("language") == "gu")
+            (cell.contentView.viewWithTag(1) as UISwitch).on = (Statics.userDefaults!.stringForKey("language") == "gu")
         }
         
         return cell
@@ -51,7 +53,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
-            return unlocked ? 3 : 1
+            return unlocked ? 1 : 1
         }
         return 1
     }
@@ -63,8 +65,18 @@ class SettingsTableViewController: UITableViewController {
         return nil
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 2 && indexPath.row == 0 {
+            
+        }
+        if indexPath.section == 2 && indexPath.row == 2 {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            Helper.showAlert("Sync Now", msg: NSDate().formatted("dd MMM yyyy"), viewController: self)
+        }
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     // MARK: - Actions
@@ -73,7 +85,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func changeLanguage(sender:AnyObject!) {
-        Statics.userDefaults.setValue(((sender as UISwitch).on ? "gu" : "en"), forKey: "language")
-        Statics.userDefaults.synchronize()
+        Statics.userDefaults!.setValue(((sender as UISwitch).on ? "gu" : "en"), forKey: "language")
+        Statics.userDefaults!.synchronize()
     }
 }

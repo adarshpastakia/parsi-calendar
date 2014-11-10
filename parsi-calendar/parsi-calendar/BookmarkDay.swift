@@ -20,7 +20,7 @@ class BookmarkDay: NSManagedObject {
 		let context = Statics.appDelegate.managedObjectContext
 		let entity = NSEntityDescription.entityForName("Bookmarks", inManagedObjectContext: context!)
 		
-		let newEntry = NSEntityDescription.insertNewObjectForEntityForName(entity!.name, inManagedObjectContext: context!) as BookmarkDay
+		let newEntry = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context!) as BookmarkDay
 		newEntry.day = NSNumber(integer: day)
 		newEntry.month = NSNumber(integer: month)
 		newEntry.bookmarkTitle = title
@@ -45,7 +45,6 @@ class BookmarkDay: NSManagedObject {
         }
         
         if !((context?.save(&error)) != nil) {
-            Helper.showAlert("Bookmarks", msg: "Oops!! Encountered an error saving new bookmark")
             println("Unresolved error \(error), \(error!.userInfo)")
         }
     }

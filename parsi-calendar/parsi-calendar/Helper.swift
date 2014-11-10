@@ -55,13 +55,13 @@ enum Statics {
 
 enum BundleFields {
     static var appTitle:AnyObject {
-    return Statics.infoDictionary["CFBundleDisplayName"]!
+    return Statics.infoDictionary!["CFBundleDisplayName"]!
     }
     static var version:AnyObject {
-    return Statics.infoDictionary["CFBundleShortVersionString"]!
+    return Statics.infoDictionary!["CFBundleShortVersionString"]!
     }
     static var build:AnyObject {
-    return Statics.infoDictionary["CFBundleVersion"]!
+    return Statics.infoDictionary!["CFBundleVersion"]!
     }
     
     static var versionString:String {
@@ -72,9 +72,13 @@ enum BundleFields {
 class Helper: NSObject {
     
     class func showAlert(title:String, msg:String) {
+        self.showAlert(title, msg: msg, viewController: Statics.rootView!)
+    }
+    
+    class func showAlert(title:String, msg:String, viewController root:UIViewController) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-        Statics.rootView!.presentViewController(alert, animated: true, completion: nil)
+        root.presentViewController(alert, animated: true, completion: nil)
     }
     
     class func registerForKeybaordNotifications(view:UIViewController, onShow:Selector, onHide:Selector) {

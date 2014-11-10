@@ -18,29 +18,29 @@ extension NSDate {
 	
 	func before(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedAscending
+		return cal?.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedAscending
 	}
 	func after(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedDescending
+		return cal?.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedDescending
 	}
 	
 	func isToday() -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: NSDate(), toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
+		return cal?.compareDate(self, toDate: NSDate(), toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
 	}
 	func on(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-        return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
+        return cal?.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) == NSComparisonResult.OrderedSame
 	}
 	
 	func onOrBefore(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) != NSComparisonResult.OrderedDescending
+		return cal?.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) != NSComparisonResult.OrderedDescending
 	}
 	func onOrAfter(date:NSDate) -> Bool {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) != NSComparisonResult.OrderedAscending
+		return cal?.compareDate(self, toDate: date, toUnitGranularity: .CalendarUnitDay) != NSComparisonResult.OrderedAscending
 	}
     
     func clearTime() -> NSDate {
@@ -69,21 +69,28 @@ extension NSDate {
 	class func dayInterval(days:CDouble) -> CDouble {
 		return days * 24 * 60 * 60 * 1000
 	}*/
+    
+    func daysSince(date:NSDate) -> Int {
+        let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let startDay=cal?.ordinalityOfUnit(.CalendarUnitDay, inUnit: .EraCalendarUnit, forDate: date)
+        let endDay=cal?.ordinalityOfUnit(.CalendarUnitDay, inUnit: .EraCalendarUnit, forDate: self)
+        return endDay!-startDay!
+    }
 	
-	func components() -> NSDateComponents {
+	func components() -> NSDateComponents! {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		return cal.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: self);
+		return cal?.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: self);
 	}
 	
-	class func fromComponents(components:NSDateComponents) -> NSDate {
+	class func fromComponents(components:NSDateComponents) -> NSDate! {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		//cal.timeZone = NSTimeZone(abbreviation: "GMT")
-		return cal.dateFromComponents(components)!
+		//cal?.timeZone = NSTimeZone(abbreviation: "GMT")
+		return cal?.dateFromComponents(components)!
 	}
 	
-	class func fromComponents(day:Int, month:Int, year:Int) -> NSDate {
+	class func fromComponents(day:Int, month:Int, year:Int) -> NSDate! {
 		let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-		//cal.timeZone = NSTimeZone(abbreviation: "GMT")
+		//cal?.timeZone = NSTimeZone(abbreviation: "GMT")
 		
 		var components = NSDate().components()
 		
@@ -91,7 +98,7 @@ extension NSDate {
 		components.month = month
 		components.year = year
 		
-		return cal.dateFromComponents(components)!
+		return cal?.dateFromComponents(components)
 		
 	}
 }

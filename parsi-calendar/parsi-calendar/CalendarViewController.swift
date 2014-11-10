@@ -60,7 +60,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			if currentViewDate.isToday() {
 				var day = Calendar.getParsiDay(NSDate())
 				var indexPath = NSIndexPath(forRow: day, inSection: 0)
-				if day > getSectionItems(0) {
+				if day >= getSectionItems(0) {
 					day = day - getSectionItems(0)
 					indexPath = NSIndexPath(forRow: day, inSection: 1)
 				}
@@ -79,13 +79,13 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 		ndComp.day = 1
 		var month = Calendar.getParsiMonth(currentViewDate)
 		
-		var x = NSDate.fromComponents(ndComp).timeIntervalSinceDate(NSDate.fromComponents(fdComp))
+		var x = NSDate.fromComponents(ndComp).daysSince(NSDate.fromComponents(fdComp))
 		
 		if section == 1 && month == 11 {
-			return Int(35 - floor(x/(24*60*60)))
+			return Int(35 - x)
 		}
 		
-		return section == 0 ? Int(floor(x/(24*60*60))) : Int(30 - floor(x/(24*60*60)))
+		return section == 0 ? x : Int(30 - x)
 	}
 	
 	func getSectionTitle(section:Int) -> String {
@@ -107,7 +107,10 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 			dayNo = indexPath.row + getSectionItems(0)
 		}
 		
-		return  firstDate.dateByAddingTimeInterval(Double(dayNo) * 24*60*60) as NSDate
+        var comp = firstDate.components();
+        comp.day += dayNo;
+        
+        return NSDate.fromComponents(comp);
 	}
 	
 	// MARK: - UICollectionViewDataSource
@@ -122,7 +125,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         view.layer.borderWidth = 0.5
         view.layer.borderColor =  UIColor(hue:139.0/360.0, saturation:0.22, brightness:0.72, alpha:1.0).CGColor
-        view.backgroundColor = UIColor(hue:139.0/360.0, saturation:0.02, brightness:0.96, alpha:1.0)
+        view.backgroundColor = UIColor(white: 0.98, alpha: 0.98)
     }
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -227,7 +230,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as UITableViewHeaderFooterView).contentView.layer.borderWidth = 0.5
         (view as UITableViewHeaderFooterView).contentView.layer.borderColor =  UIColor(hue:139.0/360.0, saturation:0.22, brightness:0.72, alpha:1.0).CGColor
-        (view as UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(hue:139.0/360.0, saturation:0.02, brightness:0.96, alpha:1.0)
+        //(view as UITableViewHeaderFooterView).contentView.backgroundColor = UIColor(white: 1.0, alpha: 0.98)
     }
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

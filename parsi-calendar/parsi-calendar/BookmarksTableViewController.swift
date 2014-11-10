@@ -72,11 +72,11 @@ class BookmarksTableViewController: UITableViewController, NSFetchedResultsContr
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
         //self.configureCell(cell, atIndexPath: indexPath)
         if indexPath.section == 1 && indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1 {
-            cell.textLabel?.text = Calendar.bookmarkLabel("Jamshedji Navroz")
+            cell.textLabel.text = Calendar.bookmarkLabel("Jamshedji Navroz")
             cell.detailTextLabel?.text = "21st - March"
         }
         else if let object = self.fetchedResultsController.objectAtIndexPath(newPath) as? BookmarkDay {
-            cell.textLabel?.text =  Calendar.bookmarkLabel(object.bookmarkTitle)
+            cell.textLabel.text =  Calendar.bookmarkLabel(object.bookmarkTitle)
             cell.detailTextLabel?.text = "\(DayNames.name(object.day.integerValue)) - \(MonthNames.name(object.month.integerValue))"
         }
         

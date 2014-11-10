@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         // Override point for customization after application launch.
         
-        if !Statics.userDefaults.boolForKey("initialized") {
+        if !Statics.userDefaults!.boolForKey("initialized") {
             BookmarkDay.removeAll()
             BookmarkDay.insert(0, month: 0, title: "Navroz", isDefault: true)
             BookmarkDay.insert(5, month: 0, title: "Khordad Saal", isDefault: true)
@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BookmarkDay.insert(32, month: 11, title: "Third Gatha", isDefault: true)
             BookmarkDay.insert(33, month: 11, title: "Fourth Gatha", isDefault: true)
             BookmarkDay.insert(34, month: 11, title: "Fifth Gatha (Papeti)", isDefault: true)
-            Statics.userDefaults.setBool(true, forKey: "initialized")
-            Statics.userDefaults.synchronize()
+            Statics.userDefaults!.setBool(true, forKey: "initialized")
+            Statics.userDefaults!.synchronize()
         }
         
         return true
@@ -60,6 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        Helper.showAlert("Memory Warning", msg: "Please try relaunching the app, sorry for the inconvenience.")
     }
     
     func saveContext () {

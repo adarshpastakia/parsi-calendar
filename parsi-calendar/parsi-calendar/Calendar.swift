@@ -14,7 +14,7 @@ enum MonthNames {
     static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
             return MonthNames.gu[index]
         }
         return MonthNames.en[index];
@@ -26,7 +26,7 @@ enum DayNames {
     static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
             return DayNames.gu[index]
         }
         return DayNames.en[index]
@@ -43,16 +43,9 @@ enum Dates {
 class Calendar: NSObject {
     
     class func getParsiYear(date:NSDate) -> CInt {
-        let ti = date.timeIntervalSinceDate(Dates.gregDate)
-        var diff:NSNumber = 0
-        
-        if ti > 0 {
-            diff = floor((ti / (24*60*60))/365)
-        }
-        else {
-            diff = ceil((ti / (24*60*60))/365)
-        }
-        return Dates.pYear + diff.intValue
+        var days = date.daysSince(Dates.gregDate)
+        var day = days / 365
+        return Dates.pYear + abs(day)
     }
     
     class func yearLabel(year:CInt) -> String {
@@ -70,48 +63,30 @@ class Calendar: NSObject {
     }
     
     class func getParsiMonth(date:NSDate)  -> Int {
-        let ti = date.timeIntervalSinceDate(Dates.gregDate)
+        var days = date.daysSince(Dates.gregDate)
+        var day = days % 365
+        var diff = day / 30
         
-        var diff:NSNumber = 0
-        var day:NSNumber = 0
-        
-        if ti > 0 {
-            day = floor((ti / (24*60*60))) % 365
-            diff = floor((floor((ti / (24*60*60))) % 365) / 30.0)
-        }
-        else {
-            day = ceil((ti / (24*60*60))) % 365
-            diff = ceil((ceil((ti / (24*60*60))) % 365) / 30.0)
-        }
-        
-        if abs(day.integerValue) >= 360 {
+        if abs(day) >= 360 {
             return 11
         }
         
-        return abs(diff.integerValue)
+        return abs(diff)
     }
     
     
     class func getParsiDay(date:NSDate)  -> Int {
-        let ti = date.timeIntervalSinceDate(Dates.gregDate)
+        var days = date.daysSince(Dates.gregDate)
+        var day = days % 365
+        var diff = day % 30
         
-        var diff:NSNumber = 0
-        var day:NSNumber = 0
+        NSLog("Date: %@,\n Days: %d, Day: %d, Diff: %d", date.formatted("dd MMM yyyy"), days, day, diff)
         
-        if ti > 0 {
-            day = floor((ti / (24*60*60))) % 365
-            diff = floor(day % 30.0)
-        }
-        else {
-            day = ceil((ti / (24*60*60))) % 365
-            diff = ceil(day % 30.0)
+        if abs(day) >= 360 {
+            return 30 + (abs(day) % 360)
         }
         
-        if abs(day.integerValue) >= 360 {
-            return 30 + (abs(day.integerValue) % 360)
-        }
-        
-        return abs(diff.integerValue)
+        return abs(diff)
     }
     
     class func isSpecialDay(dt:NSDate) -> Bool {
@@ -143,7 +118,7 @@ class Calendar: NSObject {
             "Fourth Gatha"          : "ચોથો ગાથો",
             "Fifth Gatha (Papeti)"  : "પાનચવો ગાથો (પટેટી)"
         ]
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar").stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
             if let ret = labels[lbl] {
                 return ret
             }
