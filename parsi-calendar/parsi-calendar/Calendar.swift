@@ -14,7 +14,7 @@ enum MonthNames {
     static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "group.com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
             return MonthNames.gu[index]
         }
         return MonthNames.en[index];
@@ -22,11 +22,11 @@ enum MonthNames {
 }
 
 enum DayNames {
-    static var en = ["Hormazd","Bahman","Ardibehesht","Shehrevar","Aspandard","Khordad","Amardad","Dae-pa-Adar","Adar","Avan","Khorshed","Meher","Tir","Gosh","Dae-pa-Meher","Meher","Srosh","Rashne","Fravardin","Behram","Ram","Govad","Dae-pa-Din","Din","Ashishvangh","Ashtad","Asman","Zamyad","Mareshpand","Aneran","Ahunavaiti","Ushtavaiti","Spentamainyu","Vohuxshathra","Vahishtoishti"]
+    static var en = ["Hormazd","Bahman","Ardibehesht","Shehrevar","Aspandard","Khordad","Amardad","Dae-pa-Adar","Adar","Avan","Khorshed","Mohor","Tir","Gosh","Dae-pa-Meher","Meher","Srosh","Rashne","Fravardin","Behram","Ram","Govad","Dae-pa-Din","Din","Ashishvangh","Ashtad","Asman","Zamyad","Mareshpand","Aneran","Ahunavaiti","Ushtavaiti","Spentamainyu","Vohuxshathra","Vahishtoishti"]
     static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
-        if NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
+        if NSUserDefaults(suiteName: "group.com.borisinc.ParsiCalendar")!.stringForKey("language") == "gu" {
             return DayNames.gu[index]
         }
         return DayNames.en[index]
@@ -43,9 +43,12 @@ enum Dates {
 class Calendar: NSObject {
     
     class func getParsiYear(date:NSDate) -> CInt {
-        var days = date.daysSince(Dates.gregDate)
-        var day = days / 365
-        return Dates.pYear + abs(day)
+        var dtc = date.components()
+        var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
+        
+        var days = dt.daysSince(Dates.gregDate)
+        var day = NSNumber(integer: days).floatValue / 365.0
+        return Dates.pYear + NSNumber(float: floor(day)).integerValue
     }
     
     class func yearLabel(year:CInt) -> String {
@@ -63,8 +66,12 @@ class Calendar: NSObject {
     }
     
     class func getParsiMonth(date:NSDate)  -> Int {
-        var days = date.daysSince(Dates.gregDate)
+        var dtc = date.components()
+        var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
+        
+        var days = dt.daysSince(Dates.gregDate)
         var day = days % 365
+        if(day < 0) { day = 365+day }
         var diff = day / 30
         
         if abs(day) >= 360 {
@@ -74,19 +81,38 @@ class Calendar: NSObject {
         return abs(diff)
     }
     
-    
     class func getParsiDay(date:NSDate)  -> Int {
-        var days = date.daysSince(Dates.gregDate)
+        var dtc = date.components()
+        var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
+        
+        var days = dt.daysSince(Dates.gregDate)
         var day = days % 365
+        if(day < 0) { day = 365+day }
         var diff = day % 30
         
-        NSLog("Date: %@,\n Days: %d, Day: %d, Diff: %d", date.formatted("dd MMM yyyy"), days, day, diff)
-        
-        if abs(day) >= 360 {
-            return 30 + (abs(day) % 360)
-        }
+        if(day >= 360) { diff+=30 }
         
         return abs(diff)
+    }
+    
+    class func getGregorianDate(day:Int, month:Int) -> NSDate {
+        var date = NSDate()
+        
+        var _day = Calendar.getParsiDay(date)
+        var _month = Calendar.getParsiMonth(date)
+        
+        var diff = 0
+        
+        diff += (month - _month) * 30
+        diff += (day - _day)
+        
+        date = date.add(days: diff)
+        
+        if diff < 0 {
+            date.add(days: 365)
+        }
+        
+        return date
     }
     
     class func isSpecialDay(dt:NSDate) -> Bool {

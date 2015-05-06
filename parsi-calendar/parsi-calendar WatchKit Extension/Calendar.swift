@@ -8,38 +8,38 @@
 
 import UIKit
 
-enum WdMonthNames {
+enum WkMonthNames {
     static var en = ["FRAVARDIN","ARDIBEHESHT","KHORDAD","TIR","AMARDAD","SHEHREVAR","MEHER","AVAN","ADAR","DAE","BAHMAN","ASPANDARD"]
     static var gu = ["ફરવદીન","અરદીબહેશ્ત","ખોરદાદ","તીર","અમરદાદ","શહેરેવર","મેહેર","આવાં","આદર","દઍ","બહમન","અસ્પંદાર્મદ"]
     
     static func name(index:Int) -> String {
         if NSUserDefaults(suiteName: "group.com.borisinc.ParsiCalendar")?.stringForKey("language") == "gu" {
-            return "માહ: " + WdMonthNames.gu[index]
+            return "માહ: " + WkMonthNames.gu[index]
         }
-        return "Mah: " + WdMonthNames.en[index];
+        return "Mah: " + WkMonthNames.en[index];
     }
 }
 
-enum WdDayNames {
+enum WkDayNames {
     static var en = ["Hormazd","Bahman","Ardibehesht","Shehrevar","Aspandard","Khordad","Amardad","Dae-pa-Adar","Adar","Avan","Khorshed","Mohor","Tir","Gosh","Dae-pa-Meher","Meher","Srosh","Rashne","Fravardin","Behram","Ram","Govad","Dae-pa-Din","Din","Ashishvangh","Ashtad","Asman","Zamyad","Mareshpand","Aneran","Ahunavaiti","Ushtavaiti","Spentamainyu","Vohuxshathra","Vahishtoishti"]
     static var gu = ["હોરમઝદ","બહમન","અરદીબહેશ્ત","શહેરેવર","અસ્પંદાર્મદ","ખોરદાદ","અમરદાદ","દેપઆદર","આદર","આવાં","ખોરશેદ","મોહોર","તીર","ગોશ","દએપમેહેર","મેહેર","સરોશ","રશને","ફરવદીન","બેહેરાંમ","રાંમ","ગોવાદ","દએપદીન","દીન","અશીશવંઘ","આશતાદ","આસમાન","જમીઆદ","મારેસ્પંદ","અનેરાંન","અહુનવદ","ઉસ્તવદ","સ્પેનતોમદ","વોહુક્ષથ્ર","વહીશ્તોઇસ્ત"]
     
     static func name(index:Int) -> String {
         if NSUserDefaults(suiteName: "group.com.borisinc.ParsiCalendar")?.stringForKey("language") == "gu" {
-            return "રોજ: " + WdDayNames.gu[index]
+            return "રોજ: " + WkDayNames.gu[index]
         }
-        return "Roj: " + WdDayNames.en[index]
+        return "Roj: " + WkDayNames.en[index]
     }
 }
 
-enum WdDates {
+enum WkDates {
     static let pYear:CInt = 1383
     static let gregDate = NSDate.fromComponents(18, month:8, year:2013)
     
     static let impDays = [0,2,8,16,18,19]
 }
 
-enum WdColors {
+enum WkColors {
     static var weekendColor:UIColor {
         return UIColor(hue:150.0/360.0, saturation:0.7, brightness:0.4, alpha:1.0)
         //return UIColor(hue:210.0/360.0, saturation:1.0, brightness:0.5, alpha:1.0)
@@ -63,15 +63,15 @@ enum WdColors {
     
 }
 
-class WdCalendar: NSObject {
+class WkCalendar: NSObject {
     
     class func getParsiYear(date:NSDate) -> CInt {
         var dtc = date.components()
         var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
         
-        var days = dt.daysSince(WdDates.gregDate)
+        var days = dt.daysSince(WkDates.gregDate)
         var day = NSNumber(integer: days).floatValue / 365.0
-        return WdDates.pYear + NSNumber(float: floor(day)).integerValue
+        return WkDates.pYear + NSNumber(float: floor(day)).integerValue
     }
     
     class func yearLabel(year:CInt) -> String {
@@ -92,7 +92,7 @@ class WdCalendar: NSObject {
         var dtc = date.components()
         var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
         
-        var days = dt.daysSince(WdDates.gregDate)
+        var days = dt.daysSince(WkDates.gregDate)
         var day = days % 365
         if(day < 0) { day = 365+day }
         var diff = day / 30
@@ -109,7 +109,7 @@ class WdCalendar: NSObject {
         var dtc = date.components()
         var dt = NSDate.fromComponents(dtc.day, month: dtc.month, year: dtc.year)
         
-        var days = dt.daysSince(WdDates.gregDate)
+        var days = dt.daysSince(WkDates.gregDate)
         var day = days % 365
         if(day < 0) { day = 365+day }
         var diff = day % 30

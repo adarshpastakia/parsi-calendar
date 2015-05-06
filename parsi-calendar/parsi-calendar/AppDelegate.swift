@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +35,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Statics.userDefaults!.setBool(true, forKey: "initialized")
             Statics.userDefaults!.synchronize()
         }
+        if !Statics.userDefaults!.boolForKey("cloud-initialized") {
+            BookmarkDay.setIdentifiers()
+            Statics.userDefaults!.setBool(true, forKey: "cloud-initialized")
+            Statics.userDefaults!.synchronize()
+        }
+        
+        Statics.userDefaults!.setObject("3.0", forKey: "current-version")
+        
+        //EventManager()
+        
+        if let subscription = CKSubscription(recordType: "BookmarkDay", predicate: NSPredicate(value: true), options: CKSubscriptionOptions.FiresOnRecordCreation | CKSubscriptionOptions.FiresOnRecordDeletion) {
+            Statics.cloudDatabase.saveSubscription(subscription, completionHandler: { (sub, err) -> Void in
+                if err != nil {
+                    println("Unresolved error \(err), \(err!.userInfo)")
+                }
+            })
+        }
+        
+        //application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
+        //application.registerForRemoteNotifications()
         
         return true
     }
@@ -66,6 +87,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Helper.showAlert("Memory Warning", msg: "Please try relaunching the app, sorry for the inconvenience.")
     }
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if let notif = CKNotification(fromRemoteNotificationDictionary: userInfo) {
+            if notif.notificationType == CKNotificationType.Query &&
+                !(notif as CKQueryNotification).isPublicDatabase &&
+                (notif as CKQueryNotification).queryNotificationReason == CKQueryNotificationReason.RecordCreated {
+                println(notif)
+            }
+        }
+    }
+    
     func saveContext () {
         var error: NSError? = nil
         if let managedObjectContext = self.managedObjectContext {
@@ -88,8 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 _managedObjectContext = NSManagedObjectContext()
                 _managedObjectContext!.persistentStoreCoordinator = coordinator
             }
-            }
-            return _managedObjectContext!
+        }
+        return _managedObjectContext!
     }
     var _managedObjectContext: NSManagedObjectContext? = nil
     
@@ -99,8 +130,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !(_managedObjectModel != nil) {
             let modelURL = NSBundle.mainBundle().URLForResource("parsi_calendar", withExtension: "momd")
             _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL!)
-            }
-            return _managedObjectModel!
+        }
+        return _managedObjectModel!
     }
     var _managedObjectModel: NSManagedObjectModel? = nil
     
@@ -138,8 +169,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //println("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
-            }
-            return _persistentStoreCoordinator!
+        }
+        return _persistentStoreCoordinator!
     }
     var _persistentStoreCoordinator: NSPersistentStoreCoordinator? = nil
     
@@ -148,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Returns the URL to the application's Documents directory.
     var applicationDocumentsDirectory: NSURL {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-            return urls[urls.endIndex-1] as NSURL
+        return urls[urls.endIndex-1] as NSURL
     }
     
 }

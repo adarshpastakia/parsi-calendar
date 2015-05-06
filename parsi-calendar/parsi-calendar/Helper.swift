@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 import AudioToolbox
 
 enum Colors {
@@ -36,9 +37,13 @@ enum Colors {
 // static variables
 enum Statics {
     static let infoDictionary = NSBundle.mainBundle().infoDictionary
-    static let userDefaults = NSUserDefaults(suiteName: "com.borisinc.ParsiCalendar")
+    static let userDefaults = NSUserDefaults(suiteName: "group.com.borisinc.ParsiCalendar")
+    
+    static let cloudDatabase = CKContainer.defaultContainer().privateCloudDatabase
     
     static let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    static let eventManager = EventManager()
     
     static var window:UIWindow? {
     return Statics.appDelegate.window!
@@ -77,7 +82,7 @@ class Helper: NSObject {
     
     class func showAlert(title:String, msg:String, viewController root:UIViewController) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         root.presentViewController(alert, animated: true, completion: nil)
     }
     

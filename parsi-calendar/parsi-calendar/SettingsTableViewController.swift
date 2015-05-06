@@ -13,7 +13,7 @@ import CloudKit
 class SettingsTableViewController: UITableViewController {
     
     var unlocked = true
-    var cells = [["AboutCell"], ["LanguageCell"], ["BookmarksCell", "IcloudEnableCell", "SyncNowCell"]]
+    var cells = [["AboutCell"], ["LanguageCell"], ["BookmarksCell", "CalendarEnableCell"], ["SyncNowCell"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,9 @@ class SettingsTableViewController: UITableViewController {
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(cells[indexPath.section][indexPath.row], forIndexPath: indexPath) as UITableViewCell
         
+        if indexPath.section == 2 && indexPath.row == 1 {
+            (cell.contentView.viewWithTag(1) as UISwitch).on = (Statics.userDefaults!.boolForKey("add2calendar"))
+        }
         if indexPath.section == 1 {
             (cell.contentView.viewWithTag(1) as UISwitch).on = (Statics.userDefaults!.stringForKey("language") == "gu")
         }
@@ -53,14 +56,24 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
-            return unlocked ? 1 : 1
+            return 2
         }
         return 1
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 3 {
+            return "iCloud Sync"
+        }
+        return nil
+    }
+    
     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == 2 && !unlocked {
-            return "Unlock full-version to add personal bookmarks"
+        if section == 2 {
+            return "Enable add to calendar to add bookmark day entries to your calendar"
+        }
+        if section == 3 {
+            return "Sync bookmarked days with multiple devices using your iCloud account"
         }
         return nil
     }
@@ -69,7 +82,7 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 0 {
             
         }
-        if indexPath.section == 2 && indexPath.row == 2 {
+        if indexPath.section == 3 && indexPath.row == 2 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             Helper.showAlert("Sync Now", msg: NSDate().formatted("dd MMM yyyy"), viewController: self)
         }
@@ -87,5 +100,16 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func changeLanguage(sender:AnyObject!) {
         Statics.userDefaults!.setValue(((sender as UISwitch).on ? "gu" : "en"), forKey: "language")
         Statics.userDefaults!.synchronize()
+    }
+    
+    @IBAction func toggleAdd2Calendar(sender:AnyObject!) {
+        Statics.userDefaults!.setBool((sender as UISwitch).on, forKey: "add2calendar")
+        Statics.userDefaults!.synchronize()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("Add2Calendar", object: (sender as UISwitch).on)
+    }
+    
+    @IBAction func syncNow(sender:AnyObject!) {
+        BookmarkDay.icloudSync()
     }
 }

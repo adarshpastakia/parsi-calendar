@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="parsi_calendar_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="P4r-nK-e6I"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="164" y="217"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="rjY-Ar-IMT">
+            <objects>
+                <glanceController spacing="0.0" topTemplateType="body1Medium" id="Sv0-Ai-Zie" customClass="GlanceController" customModule="parsi_calendar_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Label" id="ndM-ca-W85"/>
+                        <label alignment="left" text="1234" id="pj8-0P-Xbe"/>
+                        <group alignment="left" layout="vertical" radius="0.0" id="eew-Gs-W6Y">
+                            <items>
+                                <label width="1" alignment="left" text="Mah: Month name" numberOfLines="2" id="ifY-ct-sv4">
+                                    <fontDescription key="font" type="system" pointSize="18"/>
+                                </label>
+                                <label width="1" alignment="left" text="Roj: Day name" numberOfLines="2" id="WWg-3R-8qO">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                            </items>
+                            <color key="backgroundColor" red="0.90247515290519875" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <edgeInsets key="margins" left="2" right="2" top="0.0" bottom="0.0"/>
+                        </group>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="gpParsiDay" destination="eew-Gs-W6Y" id="waI-ab-cqh"/>
+                        <outlet property="lbDay" destination="WWg-3R-8qO" id="0jw-Wa-KXg"/>
+                        <outlet property="lbGregDate" destination="pj8-0P-Xbe" id="zL0-uY-KnY"/>
+                        <outlet property="lbGregDay" destination="ndM-ca-W85" id="JVb-YE-B5H"/>
+                        <outlet property="lbMonth" destination="ifY-ct-sv4" id="pWM-hv-0s0"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="164" y="514"/>
+        </scene>
+    </scenes>
+</document>

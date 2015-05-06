@@ -51,6 +51,7 @@ class TodayViewController: UIViewController {
             ivDate.backgroundColor = WdColors.gathaDay
         }
         
+        var tomorrow = NSDate().add(days:1)
         var nday = WdCalendar.getParsiDay(NSDate(timeIntervalSinceNow: 24*60*60))
         var nmonth = WdCalendar.getParsiMonth(NSDate(timeIntervalSinceNow: 24*60*60))
         

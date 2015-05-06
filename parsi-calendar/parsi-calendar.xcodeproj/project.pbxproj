@@ -12,6 +12,7 @@
 		F1013F841971FEDE00A70595 /* BookmarkDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F831971FEDE00A70595 /* BookmarkDay.swift */; };
 		F1013F8619720B0F00A70595 /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */; };
 		F113B730197168800020CD8A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F113B72F197168800020CD8A /* Helper.swift */; };
+		F13E0A9F1A8459A4002009F5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13E0A9E1A8459A4002009F5 /* CloudKit.framework */; };
 		F15F86F219706A7E00461B06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15F86F119706A7E00461B06 /* NotificationCenter.framework */; };
 		F15F86F719706A7E00461B06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15F86F619706A7E00461B06 /* TodayViewController.swift */; };
 		F15F86F919706A7E00461B06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F15F86F819706A7E00461B06 /* MainInterface.storyboard */; };
@@ -30,18 +31,23 @@
 		F18C43621970606800EC2C82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18C43611970606800EC2C82 /* UIKit.framework */; };
 		F18C43641970607500EC2C82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18C43631970607500EC2C82 /* Foundation.framework */; };
 		F18C43661970607B00EC2C82 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18C43651970607B00EC2C82 /* CoreData.framework */; };
-		F1A61E0819CC9E9B0024A9CB /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F15F86F019706A7E00461B06 /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F1AB55C41A116EDB00A1DDDD /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F15F86F019706A7E00461B06 /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F1DC33091A8BB04C008906DE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC33081A8BB04C008906DE /* InterfaceController.swift */; };
+		F1DC330B1A8BB04C008906DE /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC330A1A8BB04C008906DE /* GlanceController.swift */; };
+		F1DC330D1A8BB04C008906DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DC330C1A8BB04C008906DE /* Images.xcassets */; };
+		F1DC331E1A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F1DC33041A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F1DC33291A8BB086008906DE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1DC33271A8BB086008906DE /* Interface.storyboard */; };
+		F1DC332B1A8BB08D008906DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DC332A1A8BB08D008906DE /* Images.xcassets */; };
+		F1DC332D1A8BB097008906DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1DC332C1A8BB097008906DE /* Info.plist */; };
+		F1DC33461A8BB521008906DE /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC33451A8BB521008906DE /* Calendar.swift */; };
+		F1DC33481A8BB562008906DE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC33471A8BB562008906DE /* DateHelper.swift */; };
+		F1DC334E1A8BC185008906DE /* parsi-calendar WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = F1DC33101A8BB04C008906DE /* parsi-calendar WatchKit App.app */; };
+		F1E060F91A7E8F0300B13F59 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1E060F81A7E8F0300B13F59 /* EventKit.framework */; };
+		F1E060FB1A7E90DF00B13F59 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E060FA1A7E90DF00B13F59 /* EventManager.swift */; };
 		F1EED2CF19709A7D007A7D6C /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EED2CE19709A7D007A7D6C /* DayTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F15F86FD19706A7E00461B06 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F18C43241970424200EC2C82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F15F86EF19706A7E00461B06;
-			remoteInfo = "parsi-calendar-widget";
-		};
 		F18C43421970424200EC2C82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F18C43241970424200EC2C82 /* Project object */;
@@ -56,16 +62,31 @@
 			remoteGlobalIDString = F15F86EF19706A7E00461B06;
 			remoteInfo = "parsi-calendar-widget";
 		};
+		F1DC33121A8BB04C008906DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18C43241970424200EC2C82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1DC330F1A8BB04C008906DE;
+			remoteInfo = "parsi-calendar WatchKit App";
+		};
+		F1DC331C1A8BB04C008906DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18C43241970424200EC2C82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1DC33031A8BB04C008906DE;
+			remoteInfo = "parsi-calendar WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F1A61E0B19CC9E9B0024A9CB /* Embed App Extensions */ = {
+		F1AB55C51A116EDC00A1DDDD /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				F1A61E0819CC9E9B0024A9CB /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex in Embed App Extensions */,
+				F1AB55C41A116EDB00A1DDDD /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex in Embed App Extensions */,
+				F1DC331E1A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,7 +98,11 @@
 		F1013F811971EE9400A70595 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F1013F831971FEDE00A70595 /* BookmarkDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDay.swift; sourceTree = "<group>"; };
 		F1013F8519720B0F00A70595 /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
+		F11133231A8BAC31002EB1E1 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
 		F113B72F197168800020CD8A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		F13E0A9D1A845996002009F5 /* parsi-calendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "parsi-calendar.entitlements"; sourceTree = "<group>"; };
+		F13E0A9E1A8459A4002009F5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F13E0AA01A845E3C002009F5 /* parsi_calendar_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = parsi_calendar_v2.xcdatamodel; sourceTree = "<group>"; };
 		F15F86F019706A7E00461B06 /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "com.borisinc.parsi-calendar.parsi-calendar-widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F15F86F119706A7E00461B06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F15F86F519706A7E00461B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +128,41 @@
 		F18C43611970606800EC2C82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F18C43631970607500EC2C82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18C43651970607B00EC2C82 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F1DC33041A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "parsi-calendar WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DC33071A8BB04C008906DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1DC33081A8BB04C008906DE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F1DC330A1A8BB04C008906DE /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		F1DC330C1A8BB04C008906DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F1DC33101A8BB04C008906DE /* parsi-calendar WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "parsi-calendar WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DC33281A8BB086008906DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F1DC332A1A8BB08D008906DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F1DC332C1A8BB097008906DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1DC332F1A8BB4E6008906DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F1DC33311A8BB4E6008906DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F1DC33321A8BB4E6008906DE /* BookmarkDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkDay.swift; sourceTree = "<group>"; };
+		F1DC33331A8BB4E6008906DE /* BookmarkFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFormViewController.swift; sourceTree = "<group>"; };
+		F1DC33341A8BB4E6008906DE /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
+		F1DC33351A8BB4E6008906DE /* calendar-test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "calendar-test.playground"; sourceTree = "<group>"; };
+		F1DC33361A8BB4E6008906DE /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		F1DC33371A8BB4E6008906DE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		F1DC33381A8BB4E6008906DE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		F1DC33391A8BB4E6008906DE /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
+		F1DC333A1A8BB4E6008906DE /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
+		F1DC333B1A8BB4E6008906DE /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		F1DC333C1A8BB4E6008906DE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		F1DC333D1A8BB4E6008906DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F1DC333E1A8BB4E6008906DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1DC333F1A8BB4E6008906DE /* parsi-calendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "parsi-calendar.entitlements"; sourceTree = "<group>"; };
+		F1DC33411A8BB4E6008906DE /* parsi_calendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = parsi_calendar.xcdatamodel; sourceTree = "<group>"; };
+		F1DC33421A8BB4E6008906DE /* parsi_calendar_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = parsi_calendar_v2.xcdatamodel; sourceTree = "<group>"; };
+		F1DC33431A8BB4E6008906DE /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		F1DC33441A8BB4E6008906DE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F1DC33451A8BB521008906DE /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		F1DC33471A8BB562008906DE /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		F1DC334B1A8BBD49008906DE /* com.borisinc.parsi-calendar.parsi-calendar-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "com.borisinc.parsi-calendar.parsi-calendar-widget.entitlements"; sourceTree = "<group>"; };
+		F1DC334C1A8BBD5F008906DE /* parsi-calendar WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "parsi-calendar WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		F1E060F81A7E8F0300B13F59 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		F1E060FA1A7E90DF00B13F59 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		F1EED2CE19709A7D007A7D6C /* DayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +179,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13E0A9F1A8459A4002009F5 /* CloudKit.framework in Frameworks */,
+				F1E060F91A7E8F0300B13F59 /* EventKit.framework in Frameworks */,
 				F18C43661970607B00EC2C82 /* CoreData.framework in Frameworks */,
 				F18C43641970607500EC2C82 /* Foundation.framework in Frameworks */,
 				F18C43621970606800EC2C82 /* UIKit.framework in Frameworks */,
@@ -126,6 +188,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F18C433E1970424200EC2C82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1DC33011A8BB04C008906DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -151,6 +220,7 @@
 				F18C435719704AB700EC2C82 /* DateHelper.swift */,
 				F18C4355197047FC00EC2C82 /* Calendar.swift */,
 				F113B72F197168800020CD8A /* Helper.swift */,
+				F1E060FA1A7E90DF00B13F59 /* EventManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -158,6 +228,10 @@
 		F15F86EB197069F700461B06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1DC332E1A8BB4E6008906DE /* parsi-calendar */,
+				F11133231A8BAC31002EB1E1 /* WatchKit.framework */,
+				F13E0A9E1A8459A4002009F5 /* CloudKit.framework */,
+				F1E060F81A7E8F0300B13F59 /* EventKit.framework */,
 				F18C43651970607B00EC2C82 /* CoreData.framework */,
 				F18C43631970607500EC2C82 /* Foundation.framework */,
 				F18C43611970606800EC2C82 /* UIKit.framework */,
@@ -169,8 +243,9 @@
 		F15F86F319706A7E00461B06 /* parsi-calendar-widget */ = {
 			isa = PBXGroup;
 			children = (
-				F15F86F619706A7E00461B06 /* TodayViewController.swift */,
+				F1DC334B1A8BBD49008906DE /* com.borisinc.parsi-calendar.parsi-calendar-widget.entitlements */,
 				F15F870319706C7D00461B06 /* Calendar.swift */,
+				F15F86F619706A7E00461B06 /* TodayViewController.swift */,
 				F15F86F819706A7E00461B06 /* MainInterface.storyboard */,
 				F15F86F419706A7E00461B06 /* Supporting Files */,
 				F15F870519706C9E00461B06 /* DateHelper.swift */,
@@ -190,6 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				F15F86F319706A7E00461B06 /* parsi-calendar-widget */,
+				F1DC33051A8BB04C008906DE /* parsi-calendar WatchKit Extension */,
+				F1DC33141A8BB04C008906DE /* parsi-calendar WatchKit App */,
 				F15F86EB197069F700461B06 /* Frameworks */,
 				F18C432E1970424200EC2C82 /* parsi-calendar */,
 				F18C43441970424200EC2C82 /* parsi-calendarTests */,
@@ -203,6 +280,8 @@
 				F18C432C1970424200EC2C82 /* parsi-calendar.app */,
 				F18C43411970424200EC2C82 /* parsi-calendarTests.xctest */,
 				F15F86F019706A7E00461B06 /* com.borisinc.parsi-calendar.parsi-calendar-widget.appex */,
+				F1DC33041A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex */,
+				F1DC33101A8BB04C008906DE /* parsi-calendar WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,6 +289,7 @@
 		F18C432E1970424200EC2C82 /* parsi-calendar */ = {
 			isa = PBXGroup;
 			children = (
+				F13E0A9D1A845996002009F5 /* parsi-calendar.entitlements */,
 				F18C4353197042A800EC2C82 /* App Delegate */,
 				F18C43511970429800EC2C82 /* Core Data */,
 				F1013F7C1971EDB800A70595 /* Helpers */,
@@ -284,6 +364,72 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		F1DC33051A8BB04C008906DE /* parsi-calendar WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F1DC334C1A8BBD5F008906DE /* parsi-calendar WatchKit Extension.entitlements */,
+				F1DC33471A8BB562008906DE /* DateHelper.swift */,
+				F1DC33451A8BB521008906DE /* Calendar.swift */,
+				F1DC33081A8BB04C008906DE /* InterfaceController.swift */,
+				F1DC330A1A8BB04C008906DE /* GlanceController.swift */,
+				F1DC330C1A8BB04C008906DE /* Images.xcassets */,
+				F1DC33061A8BB04C008906DE /* Supporting Files */,
+			);
+			path = "parsi-calendar WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		F1DC33061A8BB04C008906DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1DC33071A8BB04C008906DE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1DC33141A8BB04C008906DE /* parsi-calendar WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				F1DC332A1A8BB08D008906DE /* Images.xcassets */,
+				F1DC33271A8BB086008906DE /* Interface.storyboard */,
+				F1DC33151A8BB04C008906DE /* Supporting Files */,
+			);
+			path = "parsi-calendar WatchKit App";
+			sourceTree = "<group>";
+		};
+		F1DC33151A8BB04C008906DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1DC332C1A8BB097008906DE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1DC332E1A8BB4E6008906DE /* parsi-calendar */ = {
+			isa = PBXGroup;
+			children = (
+				F1DC332F1A8BB4E6008906DE /* AppDelegate.swift */,
+				F1DC33301A8BB4E6008906DE /* Main.storyboard */,
+				F1DC33321A8BB4E6008906DE /* BookmarkDay.swift */,
+				F1DC33331A8BB4E6008906DE /* BookmarkFormViewController.swift */,
+				F1DC33341A8BB4E6008906DE /* BookmarksTableViewController.swift */,
+				F1DC33351A8BB4E6008906DE /* calendar-test.playground */,
+				F1DC33361A8BB4E6008906DE /* Calendar.swift */,
+				F1DC33371A8BB4E6008906DE /* CalendarViewController.swift */,
+				F1DC33381A8BB4E6008906DE /* DateHelper.swift */,
+				F1DC33391A8BB4E6008906DE /* DayCollectionViewCell.swift */,
+				F1DC333A1A8BB4E6008906DE /* DayTableViewCell.swift */,
+				F1DC333B1A8BB4E6008906DE /* EventManager.swift */,
+				F1DC333C1A8BB4E6008906DE /* Helper.swift */,
+				F1DC333D1A8BB4E6008906DE /* Images.xcassets */,
+				F1DC333E1A8BB4E6008906DE /* Info.plist */,
+				F1DC333F1A8BB4E6008906DE /* parsi-calendar.entitlements */,
+				F1DC33401A8BB4E6008906DE /* parsi_calendar.xcdatamodeld */,
+				F1DC33431A8BB4E6008906DE /* SettingsTableViewController.swift */,
+				F1DC33441A8BB4E6008906DE /* SettingsViewController.swift */,
+			);
+			path = "parsi-calendar";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,13 +457,13 @@
 				F18C43281970424200EC2C82 /* Sources */,
 				F18C43291970424200EC2C82 /* Frameworks */,
 				F18C432A1970424200EC2C82 /* Resources */,
-				F1A61E0B19CC9E9B0024A9CB /* Embed App Extensions */,
+				F1AB55C51A116EDC00A1DDDD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F15F86FE19706A7E00461B06 /* PBXTargetDependency */,
 				F1A61E0A19CC9E9B0024A9CB /* PBXTargetDependency */,
+				F1DC331D1A8BB04C008906DE /* PBXTargetDependency */,
 			);
 			name = "parsi-calendar";
 			productName = "parsi-calendar";
@@ -342,6 +488,39 @@
 			productReference = F18C43411970424200EC2C82 /* parsi-calendarTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		F1DC33031A8BB04C008906DE /* parsi-calendar WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1DC33241A8BB04C008906DE /* Build configuration list for PBXNativeTarget "parsi-calendar WatchKit Extension" */;
+			buildPhases = (
+				F1DC33001A8BB04C008906DE /* Sources */,
+				F1DC33011A8BB04C008906DE /* Frameworks */,
+				F1DC33021A8BB04C008906DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1DC33131A8BB04C008906DE /* PBXTargetDependency */,
+			);
+			name = "parsi-calendar WatchKit Extension";
+			productName = "parsi-calendar WatchKit Extension";
+			productReference = F1DC33041A8BB04C008906DE /* parsi-calendar WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		F1DC330F1A8BB04C008906DE /* parsi-calendar WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1DC33231A8BB04C008906DE /* Build configuration list for PBXNativeTarget "parsi-calendar WatchKit App" */;
+			buildPhases = (
+				F1DC330E1A8BB04C008906DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "parsi-calendar WatchKit App";
+			productName = "parsi-calendar WatchKit App";
+			productReference = F1DC33101A8BB04C008906DE /* parsi-calendar WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -354,19 +533,27 @@
 					F15F86EF19706A7E00461B06 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 85A247L6QE;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F18C432B1970424200EC2C82 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 85A247L6QE;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
 							com.apple.iCloud = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -374,6 +561,18 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 85A247L6QE;
 						TestTargetID = F18C432B1970424200EC2C82;
+					};
+					F1DC33031A8BB04C008906DE = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 85A247L6QE;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					F1DC330F1A8BB04C008906DE = {
+						CreatedOnToolsVersion = 6.2;
 					};
 				};
 			};
@@ -393,6 +592,8 @@
 				F18C432B1970424200EC2C82 /* parsi-calendar */,
 				F18C43401970424200EC2C82 /* parsi-calendarTests */,
 				F15F86EF19706A7E00461B06 /* parsi-calendar-widget */,
+				F1DC33031A8BB04C008906DE /* parsi-calendar WatchKit Extension */,
+				F1DC330F1A8BB04C008906DE /* parsi-calendar WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -422,6 +623,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1DC33021A8BB04C008906DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1DC334E1A8BC185008906DE /* parsi-calendar WatchKit App.app in Resources */,
+				F1DC330D1A8BB04C008906DE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1DC330E1A8BB04C008906DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1DC332D1A8BB097008906DE /* Info.plist in Resources */,
+				F1DC332B1A8BB08D008906DE /* Images.xcassets in Resources */,
+				F1DC33291A8BB086008906DE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -439,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E060FB1A7E90DF00B13F59 /* EventManager.swift in Sources */,
 				F1EED2CF19709A7D007A7D6C /* DayTableViewCell.swift in Sources */,
 				F1013F821971EE9400A70595 /* SettingsViewController.swift in Sources */,
 				F18C435F1970589600EC2C82 /* CalendarViewController.swift in Sources */,
@@ -463,14 +684,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1DC33001A8BB04C008906DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1DC33091A8BB04C008906DE /* InterfaceController.swift in Sources */,
+				F1DC33481A8BB562008906DE /* DateHelper.swift in Sources */,
+				F1DC33461A8BB521008906DE /* Calendar.swift in Sources */,
+				F1DC330B1A8BB04C008906DE /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F15F86FE19706A7E00461B06 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F15F86EF19706A7E00461B06 /* parsi-calendar-widget */;
-			targetProxy = F15F86FD19706A7E00461B06 /* PBXContainerItemProxy */;
-		};
 		F18C43431970424200EC2C82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F18C432B1970424200EC2C82 /* parsi-calendar */;
@@ -480,6 +707,16 @@
 			isa = PBXTargetDependency;
 			target = F15F86EF19706A7E00461B06 /* parsi-calendar-widget */;
 			targetProxy = F1A61E0919CC9E9B0024A9CB /* PBXContainerItemProxy */;
+		};
+		F1DC33131A8BB04C008906DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1DC330F1A8BB04C008906DE /* parsi-calendar WatchKit App */;
+			targetProxy = F1DC33121A8BB04C008906DE /* PBXContainerItemProxy */;
+		};
+		F1DC331D1A8BB04C008906DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1DC33031A8BB04C008906DE /* parsi-calendar WatchKit Extension */;
+			targetProxy = F1DC331C1A8BB04C008906DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -492,12 +729,29 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		F1DC33271A8BB086008906DE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1DC33281A8BB086008906DE /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		F1DC33301A8BB4E6008906DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1DC33311A8BB4E6008906DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F15F870019706A7E00461B06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar-widget/com.borisinc.parsi-calendar.parsi-calendar-widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -516,8 +770,9 @@
 		F15F870119706A7E00461B06 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar-widget/com.borisinc.parsi-calendar.parsi-calendar-widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "parsi-calendar-widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
@@ -544,8 +799,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -565,7 +820,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c9cc17b7-a0aa-4804-b227-b43fde6ae187";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -589,8 +844,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -603,7 +858,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c9cc17b7-a0aa-4804-b227-b43fde6ae187";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -615,9 +870,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar/parsi-calendar.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "parsi-calendar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,9 +887,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar/parsi-calendar.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "parsi-calendar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -669,8 +926,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/parsi-calendar.app/parsi-calendar";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -681,6 +938,78 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+		F1DC331F1A8BB04C008906DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar WatchKit Extension/parsi-calendar WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "parsi-calendar WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F1DC33201A8BB04C008906DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "parsi-calendar WatchKit Extension/parsi-calendar WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "parsi-calendar WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F1DC33211A8BB04C008906DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = parsi_calendar_WatchKit_Extension;
+				INFOPLIST_FILE = "parsi-calendar WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		F1DC33221A8BB04C008906DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = NO;
+				IBSC_MODULE = parsi_calendar_WatchKit_Extension;
+				INFOPLIST_FILE = "parsi-calendar WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
 			};
 			name = Release;
 		};
@@ -723,15 +1052,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F1DC33231A8BB04C008906DE /* Build configuration list for PBXNativeTarget "parsi-calendar WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1DC33211A8BB04C008906DE /* Debug */,
+				F1DC33221A8BB04C008906DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1DC33241A8BB04C008906DE /* Build configuration list for PBXNativeTarget "parsi-calendar WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1DC331F1A8BB04C008906DE /* Debug */,
+				F1DC33201A8BB04C008906DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
 		F18C43331970424200EC2C82 /* parsi_calendar.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F13E0AA01A845E3C002009F5 /* parsi_calendar_v2.xcdatamodel */,
 				F18C43341970424200EC2C82 /* parsi_calendar.xcdatamodel */,
 			);
-			currentVersion = F18C43341970424200EC2C82 /* parsi_calendar.xcdatamodel */;
+			currentVersion = F13E0AA01A845E3C002009F5 /* parsi_calendar_v2.xcdatamodel */;
+			path = parsi_calendar.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		F1DC33401A8BB4E6008906DE /* parsi_calendar.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1DC33411A8BB4E6008906DE /* parsi_calendar.xcdatamodel */,
+				F1DC33421A8BB4E6008906DE /* parsi_calendar_v2.xcdatamodel */,
+			);
+			currentVersion = F1DC33421A8BB4E6008906DE /* parsi_calendar_v2.xcdatamodel */;
 			path = parsi_calendar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
